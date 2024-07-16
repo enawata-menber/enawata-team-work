@@ -24,7 +24,7 @@ class Customer < ApplicationRecord
   validates :kana_first_name, :kana_last_name,
   format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: "カタカナで入力して下さい。"}
   
-  #退会機能
+  #退会済みかどうか確認する
   def active_for_authentication?
     super && (self.is_active == false)
   end
