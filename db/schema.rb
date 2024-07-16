@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2024_07_15_073229) do
 
   create_table "addresses", force: :cascade do |t|
