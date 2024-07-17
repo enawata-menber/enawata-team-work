@@ -6,11 +6,6 @@
         <div class="col-md-8">
             <h2><%= item.name %></h2>
             <p><%= item.introduction %></p>
-            <!--下記のコメントアウトはapp/helpers/items_helper.rbに追加する-->
-            <!--def price_including_tax(price_excluding_tax)-->
-            <!--   tax_rate = 0.10  # 10%の税率として設定-->
-            <!--   (price_excluding_tax * (1 + tax_rate)).round(2)-->
-            <!--end-->
             <p class="fs-5">
                 ¥　Price including tax: 
                 <span class="price-with-tax"><%= number_to_currency(price_including_tax(@item.price_excluding_tax)) %></span>
@@ -21,7 +16,7 @@
            　　 <%= form_tag order_path, method: :post do %>
                 <div class="form-group">
                   <%= label_tag 'quantity', 'Quantity:' %>
-                  <%= select_tag 'quantity', options_for_select((1..@item.stock_count).to_a.map { |num| [num, num] }, 1), { prompt: 'Select quantity' }, class: 'form-control' %>
+                  <%= select_tag 'quantity', options_for_select((1..@item.stock_count).to_a.map { |num| [num, num] }, 1), { prompt: '個数選択' }, class: 'form-control' %>
                 </div>
                 <%= submit_tag 'カートに入れる', class: 'btn btn-primary mt-3' %>
                <% end %>
