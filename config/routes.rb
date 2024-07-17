@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   
 
 # #ここから記載（たま）  
@@ -76,4 +77,11 @@ Rails.application.routes.draw do
 #     #admin/order_details
 #     resources :order_details, only: [:update]
 # end
+=======
+
+  
+  devise_for :admins
+  devise_for :customers
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+>>>>>>> develop
 end
