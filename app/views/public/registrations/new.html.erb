@@ -1,29 +1,86 @@
-<h2>Sign up</h2>
+<h3 class="bg-secondary">新規会員登録</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  <%= render "admins/shared/error_messages", resource: resource %>
+  
+  <table>
+    <tr>
+      <th>名前</th>
+      <td>
+        <label for="last_name">（姓）</label>
+        <input type="text" id="last_name" name="last_name">
+        <label for="first_name">（名）</label>
+        <input type="text" id="first_name" name="first_name">
+      </td>
+    </tr>
+    
+    <tr>
+      <th>フリガナ</th>
+      <td>
+        <label for="last_name">（セイ）</label>
+        <input type="text" id="last_name" name="last_name">
+        <label for="first_name">（メイ）</label>
+        <input type="text" id="first_name" name="first_name">
+      </td>
+    </tr>
+    
+    <tr>
+      <th>メールアドレス</th>
+      <td>
+        <input type="email" id="email" name="email" autofocus>
+      </td>
+    </tr>
+    
+    <tr>
+      <th>郵便番号</th>
+      <td>
+        <input type="text" id="postal_code" name="postal_code" autofocus>
+      </td>
+    </tr>
+    
+    <tr>
+      <th>郵便番号（ハイフンなし）</th>
+      <td>
+        <input type="text" id="postal_code" name="postal_code" autofocus>
+      </td>
+    </tr>
+    
+    <tr>
+      <th>住所</th>
+      <td>
+        <input type="text" id="address" name="address" autofocus>
+      </td>
+    </tr>
+    
+    <tr>
+      <th>電話番号（ハイフンなし）</th>
+      <td>
+        <input type="text" id="telephone_number" name="telephone_number" autofocus>
+      </td>
+    </tr>
+    
+    <tr>
+      <th>パスワード（6文字以上）</th>
+      <td>
+        <input type="password" id="encrypted_password" name="encrypted_password">
+      </td>
+    </tr>
+    
+    <tr>
+      <th>パスワード（確認用）</th>
+      <td>
+        <input type="password" id="password_confirmation" name="password_confirmation">
+      </td>
+    </tr>
+    
+    <tr>
+      <th></th>
+      <td>
+       <div class="btn btn-primary"> <%= f.submit '新規登録' %> </div>
+      </td>
+    </tr>
+  </table>
 <% end %>
 
-<%= render "public/shared/links" %>
+<h3 class="bg-secondary">既に登録済みの方</h3>
+<%= link_to "こちら", public_new_customer_session_path %>からログインしてください
