@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2024_07_15_073229) do
 
   create_table "addresses", force: :cascade do |t|
@@ -92,5 +93,4 @@ ActiveRecord::Schema.define(version: 2024_07_15_073229) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
 end
