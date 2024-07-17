@@ -13,5 +13,7 @@ class Item < ApplicationRecord
   validates :genre_id, :name, :price, presence: true
 	validates :introduction, length: {maximum: 200}
 	validates :price, numericality: {only_integer: true}
-  
+	
+	#itemの販売ステータスのenam記述を追加しました(わたり)
+   enum status: { 販売中: 0, 販売停止中: 1 }
 end
