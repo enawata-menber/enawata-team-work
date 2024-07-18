@@ -11,15 +11,15 @@ Rails.application.routes.draw do
   
 #   # 管理者用
 #   # URL /admin/sign_in ...
-#   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-#     sessions: "admin/sessions"
-#   }
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
   
 #   #Public routes
 #   #public/homes
-#   namespace :public do 
-#     root to: 'homes#top'
-#     get '/about', to: 'homes#about'
+  namespace :public do 
+    root to: 'homes#top'
+    get '/about', to: 'homes#about'
 #     #public/items
 #     resources :items, only: [:index, :show]
 #     #public/registrations
@@ -75,5 +75,5 @@ Rails.application.routes.draw do
 #     resources :orders, only: [:show, :update]
 #     #admin/order_details
 #     resources :order_details, only: [:update]
-# end
+  end
 end
