@@ -12,39 +12,38 @@
 
   <body>
     <header>
-       <div class="container">
-          <nav class="nav navbar-nav navbar-left">
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
             <%= link_to public_root_path do %>
             <%= image_tag "logo.jpg",size: "50x50" %>
             <% end %>
-          </nav>
-          <nav>
-            <!--管理者ログイン中ヘッダー画面-->
-            <ul class = "nav-item nav navbar-nav navbar-right">
-              <% if @header == 'admin' %>
-              <li><%= link_to '商品一覧',admin_items_path %></li>
-              <li><%= link_to '会員一覧',admin_customers_path %></li>
-              <li><%= link_to '注文履歴一覧',admin_path %></li>
-              <li><%= link_to 'ジャンル一覧',admin_genres_path %></li>
-              <li><%= link_to 'ログアウト',destroy_admin_session_path, method: :delete  %></li>
-            
-            <!--顧客ログイン中ヘッダー画面-->
-              <% elsif @header == 'public' %>
-              <li id="youkoso">ようこそ、<%= current_customer.last_name %>さん！</li>
-              <li><%= link_to 'マイページ',public_customer_my_page_path %></li>
-              <li><%= link_to '商品一覧',public_items_path %></li>
-              <li><%= link_to 'カート',public_cart_items_path %></li>
-              <li><%= link_to 'ログアウト',destroy_public_session_path, method: :delete  %></li>
+           <div class="collapse navbar-collapse">
+              <!--管理者ログイン中ヘッダー画面-->
+              <ul class = "navbar-nav ml-auto">
+                <% if @header == 'admin' %>
+                <li><%= link_to '商品一覧',admin_items_path %></li>
+                <li><%= link_to '会員一覧',admin_customers_path %></li>
+                <li><%= link_to '注文履歴一覧',admin_path %></li>
+                <li><%= link_to 'ジャンル一覧',admin_genres_path %></li>
+                <li><%= link_to 'ログアウト',destroy_admin_session_path, method: :delete  %></li>
               
-              <!--ログインしていない時ヘッダー画面-->
-              <% else %>
-              <li><%= link_to 'About',public_about_path %></li>
-              <li><%= link_to '商品一覧',public_items_path %></li>
-              <li><%= link_to '新規登録',new_customer_registration_path %></li>
-              <li><%= link_to 'ログイン',public_new_customer_session_path %></li>
-              <% end %>
-            </ul>
-            
+              <!--顧客ログイン中ヘッダー画面-->
+                <% elsif @header == 'public' %>
+                <li id="youkoso">ようこそ、<%= current_customer.last_name %>さん！</li>
+                <li><%= link_to 'マイページ',public_customer_my_page_path %></li>
+                <li><%= link_to '商品一覧',public_items_path %></li>
+                <li><%= link_to 'カート',public_cart_items_path %></li>
+                <li><%= link_to 'ログアウト',destroy_public_session_path, method: :delete  %></li>
+                
+                <!--ログインしていない時ヘッダー画面-->
+                <% else %>
+                <li><%= link_to 'About',public_about_path %></li>
+                <li><%= link_to '商品一覧',public_items_path %></li>
+                <li><%= link_to '新規登録',new_customer_registration_path %></li>
+                <li><%= link_to 'ログイン',public_new_customer_session_path %></li>
+                <% end %>
+              </ul>
+           </div>
             
           </nav>
        </div>
@@ -54,10 +53,13 @@
     </main>
     <!--foote-->
      <footer>
-       <div class='col-xs-3 col-xs-offset-9'>
-    		 　<p>© 2024 Enawata</p>
-    	  </div>
-         
+       <div class="container mt-5">
+         <div class="row">
+           <div class="mx-auto">
+        		 　<p>© 2024 Enawata</p>
+        	  </div>
+        	</div>
+       </div> 
      </footer>
     
   </body>
