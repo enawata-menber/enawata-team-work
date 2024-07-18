@@ -2,24 +2,24 @@
   <div class =row>
     <h2>商品新規登録</h2>
       <%= form_with model: Item.new, url: admin_items_path do |f| %>
-        <!--<h3>商品画像</h3>-->
-        <!--  <%= f.file_field :image, accept: "image/*" %>-->
+        <h3>商品画像</h3>
+          <%= f.file_field :image, accept: "image/*" %>
         <h3>商品名</h3>
           <%= f.text_field :name %>
         <h3>商品説明</h3>
           <%= f.text_area :introduction %>
-        <!--<h3>ジャンル</h3>-->
-        <!--  <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>-->
+        <h3>ジャンル</h3>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
         <h3>税抜価格</h3>
           <%= f.text_field :price %>
         <h3>販売ステータス</h3>
           <div class="radio_is_active">
-            <%= f.radio_button :status, 'on_sale', checked: @item.status == 'on_sale' %>
-            <%= f.label :status, '販売中', class: 'custom-control-label', for: 'status-on-sale' %>
+            <%= f.radio_button :is_active, 'on_sale', checked: @item.status == 'on_sale' %>
+            <%= f.label :is_active, '販売中', class: 'custom-control-label', for: 'status-on-sale' %>
           </div>
           <div class="radio_is_active">
-            <%= f.radio_button :status, 'off_sale', checked: @item.status == 'off_sale' %>
-            <%= f.label :status, '販売停止中', class: 'custom-control-label', for: 'status-off-sale' %>
+            <%= f.radio_button :is_active, 'off_sale', checked: @item.status == 'off_sale' %>
+            <%= f.label :is_active, '販売停止中', class: 'custom-control-label', for: 'status-off-sale' %>
           </div>
           <%= f.submit '新規登録' %>
       <% end %>

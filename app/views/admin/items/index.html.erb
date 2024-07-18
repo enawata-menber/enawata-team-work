@@ -2,7 +2,7 @@
   <div class =row>
       
       <h2>商品一覧</h2>
-      <table class = items>
+      <table class = items_index>
         <tr>
           <th>商品ID</th>
           <th>商品名</th>
@@ -10,13 +10,16 @@
           <th>ジャンル</th>
           <th>ステータス</th>
         </tr>  
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.price %></td>
+            <td><%= item.genre %></td>
+            <td><%= item.is_active %></td>
+          </tr>
+        <% end %>
+
       </table>
   </div>
 </div>
