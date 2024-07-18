@@ -15,6 +15,8 @@ class Public::ItemsController < ApplicationController
     
     def show
          @item = Item.find(params[:id])
+         #商品をカートに追加できるようにする
+         @cart_item = CartItem.new
     end
     
     #ジャンル検索
