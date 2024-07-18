@@ -1,21 +1,21 @@
 class Public::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
   
-  
   private
   
-  private
-  # アクティブであるかを判断するメソッド
   def customer_state
-    # 【処理内容1】 入力されたemailからアカウントを1件取得
-    customer = Customer.find_by(email: params[:customer][:email])
-    # 【処理内容2】 アカウントを取得できなかった場合、このメソッドを終了する
-    return if customer.nil?
-    # 【処理内容3】 取得したアカウントのパスワードと入力されたパスワードが一致していない場合、このメソッドを終了する
-    return unless customer.valid_password?(params[:customer][:password])
-  
-    # 【処理内容4】 アクティブでない会員に対する処理
-  
+    customer = Customer.find_by(email: params[:customer][:email]) #入力されたemailからアカウントを1件取得
+    return if customer.nil? #アカウントを取得できなかった場合、このメソッドを終了
+    flash[:notice] = "アカウントが見つかりませんでした。"
+    return unless customer.valid_password?(params[:customer][:password]) #取得したアカウントのパスワードと入力されたパスワードが一致していない場合、このメソッドを終了
+    flash[:notice] = "パスワードが一致しませんでした"
+    
+    if customer.active_for_authentication? == true #アカウントがactiveだったら
+      return # ここでcustomer_stateメソッドの実行を終了し、createアクションを実行
+    else
+      redirect_to signup_form_path #ここでサインアップ画面への遷移処理を実行
+      return
+    end
   end
   
   def after_sign_in_path_for(resource)
