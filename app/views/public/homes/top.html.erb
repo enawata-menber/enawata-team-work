@@ -1,0 +1,27 @@
+<div>
+    <p>
+        ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。
+    </p>
+</div>
+
+<h2>新着商品</h2>
+
+<div class="d-flex flex-wrap">
+    <% @items.each do |item| %>
+         <%=link_to item_path(item.id),class: "text-decoration-none w-25" do %>
+         <div class="card m-2 p-1 card-hover">
+             <%= image_tag item.get_proauct_image(100,100), class: "card-img-top rounded shadow-sm"%>
+             <div class="card-body text-body">
+                <h5 class="card-title text-primary"><%= item.name %></h5>
+                 <p class="card-text text-primary">¥<%= item.price %></p>
+             </div>
+         </div>
+         <% end %>
+    <% end %>
+    <div class="fixed-bottom text-right">
+    <%= link_to "全ての商品を見る" ,public_items_path %>
+    </div>
+</div>

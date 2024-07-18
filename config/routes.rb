@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 # #ここから記載（たま）  
 #   # 顧客用
 #   # URL /customers/sign_in ...
-#   devise_for :customers,skip: [:passwords], controllers: {
-#     registrations: "public/registrations",
-#     sessions: 'public/sessions'
-#   }
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
   
 #   # 管理者用
 #   # URL /admin/sign_in ...
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about', to: 'homes#about'
 #     #public/items
-#     resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show]
 #     #public/registrations
 #     get '/customers/sign_up', to: 'registrations#new'
 #     post '/customers', to: 'registrations#create'
