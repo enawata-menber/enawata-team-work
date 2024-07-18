@@ -15,12 +15,12 @@
        <div class="container">
           <nav class="nav navbar-nav navbar-left">
             <%= link_to root_path do %>
-            <%= image_tag "logo.jpg" %>
+            <%= image_tag "logo.jpg",size: "50x50" %>
             <% end %>
           </nav>
           <nav>
             <!--管理者ログイン中ヘッダー画面-->
-            <ul>
+            <ul class = "nav-item nav navbar-nav navbar-right">
               <% if @header == 'admin' %>
               <li><%= link_to '商品一覧',admin_items_path %></li>
               <li><%= link_to '会員一覧',admin_customers_path %></li>
@@ -53,21 +53,12 @@
     <%= yield %>
     </main>
     <!--foote-->
-     <footer id="footer">
-          <div class="icons">
-            <a href="#" class="insta_btn" style=" margin-top: 10px;">
-              <span class="insta"><i class="fab fa-instagram fa-lg"></i>
-            </span></a>
-
-            <div class="social-icons" style="margin: 5px 30px 0">
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            </div>
-
-            <a href="#" class="btn-social-icon-facebook" style=" margin-top: 10px;">
-              <span class="btn-social-icon-facebook__square"><i class="fa fa-facebook"></i></span>
-            </a>
-          </div>
-        </footer>
+     <footer>
+       <div class='col-xs-3 col-xs-offset-9'>
+    		 　<p>© 2024 Enawata</p>
+    	  </div>
+         
+     </footer>
     
   </body>
 </html>
