@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :set_devise_mapping #Deviseに対して現在のリクエストがどのモデル（ここではcustomer）にマッピングされているかを手動で設定
   before_action :authenticate_customer!
   before_action :request_post?, only: [:confirm]
   before_action :order_new?, only: [:new]
