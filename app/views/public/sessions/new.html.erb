@@ -7,7 +7,6 @@
 　  <tr>
       <th>メールアドレス</th>
       <td>
-        <%= f.label :email, 'sample@example.com' %>
         <%= f.email_field :email, autofocus: true %>
       </td>
     </tr>
@@ -29,5 +28,5 @@
 <% end %>
   
 <h4 class="bg-secondary">会員登録がお済でない方</h4>
-<%= link_to "こちら",  public_customers_sign_up_path %>から新規登録を行ってしてください
+<%= link_to "こちら",   new_customer_registration_path %>から新規登録を行ってしてください
 
