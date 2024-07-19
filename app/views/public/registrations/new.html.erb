@@ -7,69 +7,62 @@
     <tr>
       <th>名前</th>
       <td>
-        <label for="last_name">（姓）</label>
-        <input type="text" id="last_name" name="last_name">
-        <label for="first_name">（名）</label>
-        <input type="text" id="first_name" name="first_name">
+        <%= f.label :last_name, "令和" "(性) #{f.text_field :last_name, autofocus: true}".html_safe %>
+        <%= f.label :first_name, "太郎" "(名) #{f.text_field :first_name, autofocus: true}".html_safe %>
       </td>
     </tr>
     
     <tr>
       <th>フリガナ</th>
       <td>
-        <label for="last_name">（セイ）</label>
-        <input type="text" id="last_name" name="last_name">
-        <label for="first_name">（メイ）</label>
-        <input type="text" id="first_name" name="first_name">
+        <%= f.label :last_name_kana, "レイワ" "(セイ) #{f.text_field :last_name_kana, autofocus: true}".html_safe %>
+        <%= f.label :first_name_kana, "タロウ" "(メイ) #{f.text_field :first_name_kana, autofocus: true}".html_safe %>
       </td>
     </tr>
     
     <tr>
       <th>メールアドレス</th>
       <td>
-        <input type="email" id="email" name="email" autofocus>
-      </td>
-    </tr>
-    
-    <tr>
-      <th>郵便番号</th>
-      <td>
-        <input type="text" id="postal_code" name="postal_code" autofocus>
+        <%= f.label :email, 'sample@example.com' %>
+        <%= f.email_field :email, autofocus: true %>
       </td>
     </tr>
     
     <tr>
       <th>郵便番号（ハイフンなし）</th>
       <td>
-        <input type="text" id="postal_code" name="postal_code" autofocus>
+        <%= f.label :postal_code, "0000000" %>
+        <%= f.text_field :postal_code, autofocus: true %>
       </td>
     </tr>
     
     <tr>
       <th>住所</th>
       <td>
-        <input type="text" id="address" name="address" autofocus>
+        <%= f.label :address %>
+        <%= f.text_field :address, autofocus: true %>
       </td>
     </tr>
     
     <tr>
       <th>電話番号（ハイフンなし）</th>
       <td>
-        <input type="text" id="telephone_number" name="telephone_number" autofocus>
+        <%= f.label :telephone_number, "00000000000" %>
+        <%= f.text_field :telephone_number, autofocus: true %>
       </td>
     </tr>
     
     <tr>
       <th>パスワード（6文字以上）</th>
       <td>
-        <input type="password" id="encrypted_password" name="encrypted_password">
+        <%= f.password_field :password %>
       </td>
     </tr>
     
     <tr>
       <th>パスワード（確認用）</th>
       <td>
-        <input type="password" id="password_confirmation" name="password_confirmation">
+        <%= f.password_field :password_confirmation %>
       </td>
     </tr>
     

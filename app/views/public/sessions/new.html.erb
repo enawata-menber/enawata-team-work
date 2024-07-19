@@ -7,14 +7,15 @@
 　  <tr>
       <th>メールアドレス</th>
       <td>
-        <input type="email" id="email" name="email">
+        <%= f.label :email, 'sample@example.com' %>
+        <%= f.email_field :email, autofocus: true %>
       </td>
     </tr>
     
     <tr>
-      <th>パスワード（6文字以上）</th>
+      <th>パスワード</th>
       <td>
-        <input type="password" id="encrypted_password" name="encrypted_password">
+        <%= f.password_field :password %>
       </td>
     </tr>
     
