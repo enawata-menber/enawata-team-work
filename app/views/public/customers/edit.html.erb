@@ -1,0 +1,59 @@
+<h3 class="bg-secondary">会員情報編集</h3>
+
+<%= form_with model: @customer do |f| %>
+  <table>
+    <tr>
+      <th>名前</th>
+      <td>
+        <%= f.text_field :last_name, value: @customer.last_name %>
+        <%= f.text_field :first_name, value: @customer.first_name %>
+      </td>
+    </tr>
+      
+    <tr>
+      <th>フリガナ</th>
+      <td>
+        <%= f.text_field :last_name_kana, value: @customer.last_name_kana %>
+        <%= f.text_field :first_name_kana, value: @customer.first_name_kana %>
+      </td>
+    </tr>
+      
+    <tr>
+      <th>メールアドレス</th>
+      <td>
+        <%= f.email_field :email, value: @customer.email %>
+      </td>
+    </tr>
+      
+    <tr>
+      <th>郵便番号（ハイフンなし）</th>
+      <td>
+        <%= f.text_field :postal_code, value: @customer.postal_code %>
+      </td>
+    </tr>
+      
+    <tr>
+      <th>住所</th>
+      <td>
+        <%= f.text_field :address, value: @customer.address %>
+      </td>
+    </tr>
+      
+    <tr>
+      <th>電話番号（ハイフンなし）</th>
+      <td>
+        <%= f.text_field :telephone_number, value: @customer.telephone_number %>
+      </td>
+    </tr>
+    
+    <tr>
+      <th></th>
+      <td colspan="2">
+        <%= f.submit "編集内容を保存", class: 'btn btn-success' %>
+        <%= button_to "退会する", customer_path(@customer), method: :patch, class: 'btn btn-danger' %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+
