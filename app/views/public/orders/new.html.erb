@@ -3,8 +3,48 @@
          <div class="col-xs-7">
              <h2><i class="fas fa-pen"></i>注文情報入力</h2>
                <p><%= notice %></p>
+               <%= form_with(model: @order, local: true, url:  public_orders_root_path, method: :post) do |f| %>
+               <div>
+               <%= f.label :payment_method, "支払い方法" %><br>
+                <% @payment_methods.each do |method| %>
+                  <%= f.radio_button :payment_method, method %>
+                  <%= f.label :payment_method, method %><br>
+                <% end %>
+                </div>
+                
+                 <div>
+                    <%= f.label :shipping_address, "お届け先" %><br>
+                    <%= f.radio_button :address_option, 'registered', checked: true %>
+                    <%= f.label :address_option, 'ご自身の住所' %><br>
+                 </div>
+                 <div>
+                      <%= current_customer.address %><br>
+                      <%= current_customer.name %>
+                 </div>
+                 <%= f.radio_button :address_option, 'select' %>
+                 <%= f.label :address_option, '登録済住所から選択' %><br>
+                 <div>
+                  <%= f.collection_select :selected_address_id, @addresses, :id, :address %><br>
+            　   </div>
+            　   
+            　    <%= f.radio_button :address_option, 'new' %>
+                 <%= f.label :address_option, '新しいお届け先' %><br>
+                 
+                 <div>
+                  <%= f.label :new_postal_code, '郵便番号(ハイフンなし)' %>
+                  <%= f.text_field :new_postal_code, placeholder: '0000000' %><br>
+            
+                  <%= f.label :new_address, '住所' %>
+                  <%= f.text_field :new_address, placeholder: '東京都渋谷区代々木神園町0-0' %><br>
+            
+                  <%= f.label :new_name, '宛名' %>
+                  <%= f.text_field :new_name, placeholder: '令和道子' %><br>
+                </div>
+                <div>
+                    <%= f.submit "確認画面へ進む" %>
+                </div>
+                <% end %>
                
-             
          </div>
     </div>
 </div>

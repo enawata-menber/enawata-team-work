@@ -4,7 +4,10 @@ class Public::OrdersController < ApplicationController
   before_action :order_new?, only: [:new]
     
   def new
-    # 注文情報入力画面のロジック
+    @payment_methods = ['クレジットカード', '銀行振込']
+    @addresses = current_customer.addresses # 顧客の登録済み住所を取得
+    @order = Order.new
+  
   end
 
   def confirm
@@ -17,6 +20,10 @@ class Public::OrdersController < ApplicationController
 
 
   private
+  
+   def set_devise_mapping #eviseが正しいマッピングを使用するように設定
+    @request.env["devise.mapping"] = Devise.mappings[:customer]
+ 　 end
   
   def authenticate_customer!
     # ユーザーがログインしていない場合の処理をここに記述
