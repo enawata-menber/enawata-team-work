@@ -1,0 +1,59 @@
+<p id ='notice'></p>
+   <div class ='container px-5 px-sm-0 mx-5'>
+     <div class='row'>
+        <div class = 'col-xs-10 '>
+            <h2>ショッピングカート</h2>
+         </div> 
+         <div class = "col-xs-2">
+            <%= link_to 'すべて削除', destroy_all_public_cart_items_path, method: :delete, data: { confirm: '本当に全て削除しますか？' } %>
+          </div> 
+      </div>
+       <div class='row'>
+            <% if @cart_items.any? %>
+             <table class = 'table table-hover table-inverse'>
+                  <thead>
+                    <tr>
+                      <th>商品名</th>
+                      <th>単価(税込)</th>
+                      <th>数量</th>
+        	       　 <th>小計</th>
+        	       　 <th colspan="1"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <% @cart_items.each do |cart_item| %>
+                    <tr>
+                      <td>
+                          <%= attachment_image_tag cart_item.item, :image, size: "50x50", fallback: "no_image.jpg" %><%= cart_item.item.name %>
+                      </td>
+                      <td><%= cart_item.item.price %></td>
+                      <td>
+                          <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
+                          <%= f.select :number_of_items, options_for_select(1..10, cart_item.number_of_items) %>
+                          <%= f.submit "変更", class: "btn btn-primary" %>
+                          <% end %>
+                      </td>
+                      <td><%= number_with_delimiter(cart_item.item.price * cart_item.number_of_items) %></td>
+                      <td>
+                        <%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+                      </td>
+                     </tr>
+                   <% end %>
+                  </tbody>
+             </table>
+            <% else %>
+                <p>カートに商品がありません。</p>
+            <% end %>
+         </div>
+          <div class="row">
+    　　　　<div class="col-xs-9">
+               <div><%= link_to "買い物を続ける", public_root_path, class:"btn btn-primary" %></div>
+             </div>
+              <div class="col-xs-3">
+                 <div class="total-price-box">
+                    <div class="total-price">合計金額</div>
+                    <div class="total-price"><%= @total %></div>
+                 </div>
+              </div>
+          </div>
+   </div>
