@@ -50,7 +50,7 @@
       <th></th>
       <td colspan="2">
         <%= f.submit "編集内容を保存", class: 'btn btn-success' %>
-        <%= button_to "退会する",  public_customer_withdraw_path(@customer), method: :patch, class: 'btn btn-danger' %>
+      　<%= link_to "退会する",  public_customer_unsubscribe_path(@customer), class: "btn btn-primary" %>
       </td>
     </tr>
   </table>
