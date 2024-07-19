@@ -64,13 +64,13 @@ Rails.application.routes.draw do
 #       end
 #     end
 #     #admin/homes
-#     root to: 'admin/homes#top'
+     root to: 'admin/homes#top'
 #     #admin/items
 #     resources :items
 #     #admin/genres
 #     resources :genres, only: [:index, :create, :edit, :update]
 #     #admin/customers
-#     resources :customers, only: [:index, :show, :edit, :update]
+     resources :customers, only: [:index, :show, :edit, :update]
 #     #admin/orders
 #     resources :orders, only: [:show, :update]
 #     #admin/order_details
