@@ -21,17 +21,17 @@
   </div>
   
   <!-- 右側のメインコンテンツ -->
-  <div class="col-12 col-md-9">
+  <div class="col-12 col-md-9 d-flex flex-column align-items-center">
     <!-- ようこその文章 -->
-    <div class="welcome-text">
-      <p class="mt-4">
+    <div class="welcome-text text-center mt-4 mb-4">
+      <p>
         ようこそ、ながのCAKEへ！<br>
         このサイトは、ケーキ販売のECサイトになります。<br>
         会員でない方も商品の閲覧はできますが、<br>
         購入には会員登録が必要になります。
       </p>
     </div>
-    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+    <div class="col-11 col-sm-10 col-lg-8 col-xl-6">
       <h2>新着商品</h2>
       <div class="d-flex flex-wrap">
         <% @items.each do |item| %>
