@@ -1,27 +1,30 @@
 Rails.application.routes.draw do
   
 
- #ここから記載（たま）  
-   # 顧客用
-   # URL /customers/sign_in ...
+#ここから記載（たま）  
+  # 顧客用
+  # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
   
-   # 管理者用
-   # URL /admin/sign_in ...
+  # 管理者用
+  # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
   
-   #Public routes
+  #Public routes
   #public/homes
   namespace :public do 
     root to: 'homes#top'
     get '/about', to: 'homes#about'
     #public/items
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do #ジャンル検索ルート追加
+     get 'items/search/:genre_id', to: 'items#search', as: 'search_public_items'
+     end
+    
     #public/registrations
     get '/customers/sign_up', to: 'registrations#new'
     post '/customers', to: 'registrations#create'
@@ -77,5 +80,5 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     #admin/order_details
     resources :order_details, only: [:update]
-  end
+   end
 end
