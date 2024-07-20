@@ -2,44 +2,41 @@
 <div class="container">
     <div class="row">
         <!--ジャンル検索-->
-        <%= render 'public/shared/genre_links', genres: @genres %>
+        <div class="col-md-3">
+            <div class="mt-5">
+                <%= render 'public/shared/genre_links', genres: @genres %>
+            </div>
+        </div>
         <!--商品一覧&ジャンル一覧-->
-        <% if @genre.present? %>
-         <div class="col-xs-9 col-xs-offset-1">
-              <h2 class="text-center"><%= @genre.name %>一覧<span style="font-size: 20px">(全<%= @item_count %>件)</span></h2>
-              <!--選択されたジャンルに基づく商品一覧-->
-               <div class="row">
-              <% @items.each do |item| %>
-                <div class="col-md-3">
-                  <img src="<%= item.image_url %>" class="card-image-top" alt="<%= item.name %>の画像">
-                  <div>
-                    <h5 class="card-title"><%= item.name %></h5>
-                    <p class="card-text">¥<%= item.price %></p>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-         </div>
-        <% else %>
-         <div class="col-xs-9 col-xs-offset-1">
-              <h2 class="text-center">商品一覧<span style="font-size: 20px">(全<%= @item_count %>件)</span></h2>
-              <!--商品一覧-->
+        <div class="col-xs-9 col-xs-offset-1">
+            <% if @genre.present? %>
+                <h2 class="text-center mt-5"><%= @genre.name %>一覧<span style="font-size: 20px">(全<%= @item_count %>件)</span></h2>
+                <!--選択されたジャンルに基づく商品一覧-->
+            <% else %>
+                <h2 class="text-center mt-5 mx-5">商品一覧<span style="font-size: 20px">(全<%= @item_count %>件)</span></h2>
+                <!--全商品一覧-->
+            <% end %>
+            
+            <% if @items.any? %>
                 <div class="row">
-               <% @items.each do |item| %>
-                 <div class = "col-md-3">
-                     <img src = "<%= item.image_url %>" class="card-image-top" alt="<%= item.name %>の画像">
-                     <div>
-                        <h5 class ="card-title"><%= item.name %></h5>
-                        <p class="card-text">¥<%= item.price%></p>
-                     </div>
-                 </div>
-            　 <% end %>
-            </div>
-     　  </div>
-         <% end %>
-      <!--ページネーション表示-->
-      <div class="col-xs-6 col-xs-offset-3 text-center ">
-          <%= paginate @items %>
-      </div>
-  </div>
+                    <% @items.each do |item| %>
+                        <div class="col-md-3 mx-5">
+                            <img src="<%= item.image_url %>" class="card-image-top" alt="<%= item.name %>の画像">
+                            <div>
+                                <h5 class="card-title"><%= item.name %></h5>
+                                <p class="card-text">¥<%= item.price %></p>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            <% else %>
+                <p class="text-center mt-5">商品がありません</p>
+            <% end %>
+        </div>
+    </div>
+    
+    <!--ページネーション表示-->
+    <div class="col-xs-6 col-xs-offset-3 text-center">
+        <%= paginate @items %>
+    </div>
 </div>
