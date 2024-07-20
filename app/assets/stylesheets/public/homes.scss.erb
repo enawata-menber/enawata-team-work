@@ -1,0 +1,43 @@
+// Place all the styles related to the public/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+/* home/topページの画像 */
+.welcome-container {
+  position: relative;
+  width: 100%; /* 幅を100%に設定 */
+  height: 100%; /* 必要に応じて高さを設定 */
+  background-image: url('<%= asset_path("home_top.png") %>'); /* 背景画像のパスを指定 */
+  background-size: cover; /* 画像をコンテナのサイズに合わせる */
+  background-position: center; /* 画像を中央に配置 */
+  background-repeat: no-repeat; /* 画像の繰り返しを防ぐ */
+  overflow: hidden; /* オーバーフローを隠す */
+  border-radius: 15px; /* 角を丸くする */
+}
+
+.welcome-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6); /* 半透明の白いオーバーレイ */
+  border-radius: 15px; /* オーバーレイの角を丸くする */
+  z-index: 0; /* オーバーレイがテキストの後ろに表示されるようにする */
+}
+
+.welcome-text {
+  position: relative;
+  color: #333; /* 文字色を白に設定 */
+  padding: 20px; /* パディングを追加 */
+  border-radius: 10px; /* 角を丸くする */
+  z-index: 1; /* 必要に応じてz-indexを設定 */
+}
+
+.welcome-text p {
+  position: relative; /* オーバーレイの上にテキストを表示するために相対位置を指定 */
+  z-index: 2; /* テキストがオーバーレイの上に表示されるようにする */
+  font-weight: bold; /* 文字を太く設定 */
+  font-size: 1.2em; /* 必要に応じてフォントサイズも調整 */
+}

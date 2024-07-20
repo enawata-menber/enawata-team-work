@@ -15,7 +15,9 @@
  */
 
 @import "bootstrap"; /* 既存のインポート */
+@import "public/homes"; /* homes.scssをインポート */
 @import "your_custom_styles"; /* 追加する場合、他のカスタムスタイルシートをインポートすることも可能 */
+
 
 /*home/topページの画像*/
 .welcome-text {
