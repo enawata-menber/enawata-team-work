@@ -20,7 +20,7 @@
 /*home/topページの画像*/
 .welcome-text {
   position: relative;
-  background-image: url('app/assets/images/home_top.png'); /* 背景画像のパスを指定 */
+  background-image: url('<%= asset_path("home_top.png") %>'); /* 背景画像のパスを指定 */
   background-size: cover; /* 画像をコンテナのサイズに合わせる */
   background-position: center; /* 画像を中央に配置 */
   color: #fff; /* 文字色を白に設定 */
