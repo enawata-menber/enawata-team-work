@@ -2,26 +2,32 @@
   <div class =row>
       
       <h2>商品編集</h2>
-        <%= form_with model: item, url: admin_item_path, local: true do |f| %>
-          <%= f.label :商品画像 %>
-            <%= f.file_field :image, accept: "image/*" %>
-          <%= f.label :商品名 %>
-            <%= f.text_field :name  %>
-          <%= f.label :商品説明 %>
-            <%= f.text_area :introduction  %>
-          <%= f.label :商品ジャンル %>
-            <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
-          <%= f.label :税抜価格 %>
-            <%= f.text_field :price  %>
-          <%= f.label :販売ステータス %>
-            <div class="radio_is_active">
-              <%= f.radio_button :is_active, 'on_sale', checked: @item.status == 'on_sale' %>
-              <%= f.label :is_active, '販売中', class: 'custom-control-label', for: 'status-on-sale' %>
-            </div>
-            <div class="radio_is_active">
-              <%= f.radio_button :is_active, 'off_sale', checked: @item.status == 'off_sale' %>
-              <%= f.label :is_active, '販売停止中', class: 'custom-control-label', for: 'status-off-sale' %>
-            </div>
+        <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
+          <div>
+            <%= f.label :商品画像 %>
+              <%= f.file_field :image, accept: "image/*" %>
+          </div>
+          <div>
+            <%= f.label :商品名 %>
+              <%= f.text_field :name  %>
+          </div>
+          <div>
+            <%= f.label :商品説明 %>
+              <%= f.text_area :introduction  %>
+          </div>
+          <div>
+            <%= f.label :商品ジャンル %>
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+          </div>
+          <div>
+            <%= f.label :税抜価格 %>
+              <%= f.text_field :price  %>
+          </div>
+          <%= f.radio_button :status, "販売中" %>
+          <%= f.label :status, "販売中" %>
+          <%= f.radio_button :status, "販売停止中" %>
+          <%= f.label :status, "販売停止中" %>
+            <%= f.submit '変更を保存' %>
         <% end %>
   </div>
 </div>

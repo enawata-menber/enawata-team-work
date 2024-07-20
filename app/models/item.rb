@@ -15,5 +15,5 @@ class Item < ApplicationRecord
 	validates :price, numericality: {only_integer: true}
 	
 	#itemの販売ステータスのenam記述を追加しました(わたり)
-   enum status: { 販売中: 0, 販売停止中: 1 }
+   enum is_active: { 販売中: 0, 販売停止中: 1 }
 end

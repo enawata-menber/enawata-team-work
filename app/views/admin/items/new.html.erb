@@ -13,14 +13,10 @@
         <h3>税抜価格</h3>
           <%= f.text_field :price %>
         <h3>販売ステータス</h3>
-          <div class="radio_is_active">
-            <%= f.radio_button :is_active, 'on_sale', checked: @item.status == 'on_sale' %>
-            <%= f.label :is_active, '販売中', class: 'custom-control-label', for: 'status-on-sale' %>
-          </div>
-          <div class="radio_is_active">
-            <%= f.radio_button :is_active, 'off_sale', checked: @item.status == 'off_sale' %>
-            <%= f.label :is_active, '販売停止中', class: 'custom-control-label', for: 'status-off-sale' %>
-          </div>
+          <%= f.radio_button :status, "販売中" %>
+          <%= f.label :status, "販売中" %>
+          <%= f.radio_button :status, "販売停止中" %>
+          <%= f.label :status, "販売停止中" %>
           <%= f.submit '新規登録' %>
       <% end %>
   </div>
