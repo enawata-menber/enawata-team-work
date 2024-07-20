@@ -48,6 +48,8 @@ Rails.application.routes.draw do
         post 'confirm', to: 'orders#confirm', as: 'confirm'
         get 'thanks', to: 'orders#thanks', as: 'thanks'
       end
+      root to: 'public/orders#new' #追加
+
     end
     #public/addresses
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
