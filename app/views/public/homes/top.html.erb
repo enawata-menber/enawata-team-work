@@ -3,21 +3,21 @@
   <!--<p id="notice"></p>-->
     <div class="row">
         <!-- 左側のジャンルリンク -->
-      <div class="col-12 col-md-3 mb-4">
-        <%= render 'genre_links_html' %>
+      <div class="col-12 col-md-3 mb-4 d-flex flex-column">
+        <%= render 'public/shared/genre_links', genres: @genres %>
       </div>
       <!-- 右側のメインコンテンツ -->
       <div class="col-12 col-md-9">
       <!-- ようこその文章 -->
-      <div class ="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
-        <p>
+       <div class="welcome-text bg-overlay mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 mb-5">
+        <p class="mt-4">
             ようこそ、ながのCAKEへ！<br>
             このサイトは、ケーキ販売のECサイトになります。<br>
             会員でない方も商品の閲覧はできますが、<br>
             購入には会員登録が必要になります。
         </p>
         </div>
-    <!--<div class="w-100"></div> -->
+    
     <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
         <h2>新着商品</h2>
         
@@ -35,7 +35,7 @@
             <% end %>
           </div>
       </div>
-            <div class="text-rigt mt-3">
+            <div class="text-right mt-3">
             <%= link_to "全ての商品を見る" ,public_items_path %>
             </div>
       </div>
