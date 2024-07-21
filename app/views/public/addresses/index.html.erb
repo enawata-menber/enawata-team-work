@@ -1,6 +1,6 @@
 <h3 class="bg-secondary">配送先登録/一覧</h3>
 
- <%= form_with model: @address, url: public_addresses_path do |f| %> 
+  <%= form_with model: @address, url: public_addresses_path do |f| %> 
     <table>
       <tr>
         <th>郵便番号（ハイフンなし）</th>
@@ -9,7 +9,7 @@
       
       <tr>
         <th>住所</th>
-        <td><%= f.text_field :addresss, autofocus: true %></td>
+        <td><%= f.text_field :address, autofocus: true %></td>
       </tr>
       
       <tr>

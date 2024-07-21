@@ -14,26 +14,26 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
-      flash.now[:notice] = "新規配送先を登録しました"
+      flash[:notice] = "新規配送先を登録しました"
       redirect_to public_addresses_path
     end
   end
   
-  def updeate
+  def update
     address = Address.find(params[:id])
     address.update(address_params)
-    flash.now[:alert] = "変更内容を登録しました"
+    flash[:success] = "変更内容を登録しました"
     redirect_to public_addresses_path
   end
   
   def destroy
     address = Address.find(params[:id])
     address = address.destroy
-    flash.now[:alert] = "配送先を削除しました"
+    flash[:alert] = "配送先を削除しました"
     redirect_to public_addresses_path
   end
   
-   private
+  private
 
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
