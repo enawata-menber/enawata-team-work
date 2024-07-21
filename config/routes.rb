@@ -15,11 +15,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
-<<<<<<< HEAD
   #Public routes
-=======
-   #Public routes
->>>>>>> develop
   #public/homes
   namespace :public do 
     root to: 'homes#top'
@@ -84,9 +80,5 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     #admin/order_details
     resources :order_details, only: [:update]
-
-
-
  end
-
 end
