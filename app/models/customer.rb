@@ -20,6 +20,22 @@ class Customer < ApplicationRecord
   validates :telephone_number, numericality: {only_integer: true}
   validates :first_name_kana, :last_name_kana,
   format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: "カタカナで入力して下さい。"}
+    
+  def full_name #フルネーム表示のため追加（おはる）
+    first_name + '' + last_name
+  end
+  
+  def full_name_kana #かなフルネーム表示のため追加（おはる）
+    kana_first_name + '' + kana_last_name
+  end
+  
+  def customer_status #会員ステータス追加（おはる）
+    if is_deleted == true
+      "退会"
+    else
+      "有効"
+    end
+  end
   
   #ユーザーがacitveの場合はtrueを返す
   def active_for_authentication?
