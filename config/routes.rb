@@ -22,13 +22,7 @@ Rails.application.routes.draw do
     get '/about', to: 'homes#about'
     #public/items
     resources :items, only: [:index, :show]
-    #public/registrations
-    # get '/customers/sign_up', to: 'registrations#new'
-    # post '/customers', to: 'registrations#create'
-    # #public/sessions
-    # get '/customers/sign_in', to: 'sessions#new',as: 'new_customer_session'
-    # post '/customers/sign_in', to: 'sessions#create',as: 'customer_session'
-    # delete '/customers/sign_out',to: 'sessions#destroy',as: 'destroy_customer_session'
+  
     # #public/customers
     get '/customers/my_page', to: 'customers#show', as: 'customer_my_page'
     get '/customers/information/edit', to: 'customers#edit', as: 'edit_customer_information'
