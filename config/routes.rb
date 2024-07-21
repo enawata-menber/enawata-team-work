@@ -82,3 +82,4 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
    end
 end
+
