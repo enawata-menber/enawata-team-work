@@ -73,4 +73,5 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     #admin/order_details
     resources :order_details, only: [:update]
+  end
 end

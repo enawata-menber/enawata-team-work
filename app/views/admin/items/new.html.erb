@@ -1,23 +1,37 @@
 <div class = container>
   <div class =row>
-    <h2>商品新規登録</h2>
       <%= form_with model: Item.new, url: admin_items_path do |f| %>
-        <h3>商品画像</h3>
+        <h4>商品新規登録</h4>
+        <div>
+          <%= f.label :商品画像 %>    
           <%= f.file_field :image, accept: "image/*" %>
-        <h3>商品名</h3>
+        </div>
+        <div>
+          <%= f.label :商品名 %>
           <%= f.text_field :name %>
-        <h3>商品説明</h3>
+        </div>
+        <div>
+          <%= f.label :商品説明 %>
           <%= f.text_area :introduction %>
-        <h3>ジャンル</h3>
+        </div>
+        <div>
+          <%= f.label :ジャンル %>
           <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
-        <h3>税抜価格</h3>
+        </div>
+        <div>
+          <%= f.label :税抜価格 %>
           <%= f.text_field :price %>
-        <h3>販売ステータス</h3>
-          <%= f.radio_button :status, "販売中" %>
-          <%= f.label :status, "販売中" %>
-          <%= f.radio_button :status, "販売停止中" %>
-          <%= f.label :status, "販売停止中" %>
+        </div>
+        <div>
+          <%= f.label :販売ステータス %>
+          <%= f.radio_button :is_active, true %>
+            <%= f.label :is_active, "販売中" %>
+          <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active, "販売停止中" %>
+        </div>
+        <div>
           <%= f.submit '新規登録' %>
+        </div>
       <% end %>
   </div>
 </div>

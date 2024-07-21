@@ -1,6 +1,9 @@
+<script src="https://kit.fontawesome.com/fff1710ae4.js" crossorigin="anonymous"></script>
 <div class="container">
   <div class="row">
-    <h2>商品一覧</h2><%= link_to '＋', new_admin_item_path %>
+    <%= link_to new_admin_item_path do %>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
   </div>
   
   <div class="row">
@@ -18,7 +21,6 @@
             <td><%= link_to item.name, admin_item_path(item) %></td>
             <td><%= item.price.to_s(:delimited) %></td>
             <td><%= item.genre.name %></td>
-            <td><%= item.is_active %></td>
             <td>
           <% if item.is_active %>
             販売中
