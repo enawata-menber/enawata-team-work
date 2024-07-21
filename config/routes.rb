@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-
-# #ここから記載（たま）  
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
@@ -75,5 +73,4 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     #admin/order_details
     resources :order_details, only: [:update]
-end
 end
