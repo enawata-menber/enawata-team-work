@@ -14,7 +14,7 @@
           <td><%= @item.name %></td>
           <td><%= @item.introduction %></td>
           <td><%= @item.genre.name %></td>
-          <td><%=@item.price %>円（<%=(@item.price * 1.1).floor %>円）</td>
+          <td><%= @item.price.to_s(:delimited) %>円（<%= (@item.price * 1.1).floor.to_s(:delimited) %>円）</td>
           <td><%= @item.is_active ? '販売中' : '販売停止中' %></td>
         </tr>
       </table>
