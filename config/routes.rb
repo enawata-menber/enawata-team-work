@@ -23,6 +23,12 @@ Rails.application.routes.draw do
     #public/items
     resources :items, only: [:index, :show]
     #public/registrations
+    # get '/customers/sign_up', to: 'registrations#new'
+    # post '/customers', to: 'registrations#create'
+    # #public/sessions
+    # get '/customers/sign_in', to: 'sessions#new',as: 'new_customer_session'
+    # post '/customers/sign_in', to: 'sessions#create',as: 'customer_session'
+    # delete '/customers/sign_out',to: 'sessions#destroy',as: 'destroy_customer_session'  #public/registrations
     get '/customers/sign_up', to: 'registrations#new'
     post '/customers', to: 'registrations#create'
     #public/sessions
