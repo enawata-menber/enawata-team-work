@@ -7,44 +7,47 @@
     <%= csp_meta_tag %>
     <!--Bootstrap CSS 追記-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+   
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <!--css-->
+    <link href="/assets/application.css" rel="stylesheet">
     
   </head>
 
   <body>
     <header>
-       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <nav class="navbar navbar-expand-lg navbar-dark bg-light-info">
           <div class="container">
             <%= link_to public_root_path do %>
-            <%= image_tag "logo.png",size: "50x50" %>
+            <%= image_tag "logo.png",size: "80x80" %>
             <% end %>
            <div class="collapse navbar-collapse">
               <!--管理者ログイン中ヘッダー画面-->
               <ul class = "navbar-nav ml-auto">
                 <% if @header == 'admin' %>
-                <li class="nav-link text-light"><%= link_to '商品一覧',admin_items_path %></li>
-                <li class="nav-link text-light"><%= link_to '会員一覧',admin_customers_path %></li>
-                <li class="nav-link text-light"><%= link_to '注文履歴一覧',admin_path %></li>
-                <li class="nav-link text-light"><%= link_to 'ジャンル一覧',admin_genres_path %></li>
-                <li class="nav-link text-light"><%= link_to 'ログアウト',destroy_admin_session_path, method: :delete  %></li>
+                <li class="nav-item"><%= link_to '商品一覧',admin_items_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+                <li class="nav-item"><%= link_to '会員一覧',admin_customers_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+                <li class="nav-item"><%= link_to '注文履歴一覧',admin_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+                <li class="nav-item"><%= link_to 'ジャンル一覧',admin_genres_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+                <li class="nav-item"><%= link_to 'ログアウト',destroy_admin_session_path, method: :delete ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+                
               
               <!--顧客ログイン中ヘッダー画面-->
                 <% elsif @header == 'public' %>
-                <li id="youkoso">ようこそ、<%= current_customer.last_name %>さん！</li>
-                <li class="nav-link text-light"><%= link_to 'マイページ',public_customer_my_page_path %></li>
-                <li class="nav-link text-light"><%= link_to '商品一覧',public_items_path %></li>
-                <li class="nav-link text-light"><%= link_to 'カート',public_cart_items_path %></li>
-                <li class="nav-link text-light"><%= link_to 'ログアウト',destroy_customer_session_path, method: :delete  %></li>
+                <li id="youkoso"  class="navbar-text">ようこそ、<%= current_customer.last_name %>さん！</li>
+                <li class="nav-item"><%= link_to 'マイページ',public_customer_my_page_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+                <li class="nav-item"><%= link_to '商品一覧',public_items_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+                <li class="nav-item"><%= link_to 'カート',public_cart_items_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+                <li class="nav-item"><%= link_to 'ログアウト',destroy_customer_session_path, method: :delete ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
                 
                 
                 <!--ログインしていない時ヘッダー画面-->
                 <% else %>
-                <li class="nav-link text-light"><%= link_to 'About',public_about_path %></li>
-                <li class="nav-link text-light"><%= link_to '商品一覧',public_items_path %></li>
-                <li class="nav-link text-light"><%= link_to '新規登録',new_customer_registration_path %></li>
-                <li class="nav-link text-light"><%= link_to 'ログイン',new_customer_session_path %></li>
+               <li class="nav-item"><%= link_to 'About', public_about_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+               <li class="nav-item"><%= link_to '商品一覧', public_items_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+               <li class="nav-item"><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
+               <li class="nav-item"><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
                 <% end %>
               </ul>
            </div>
