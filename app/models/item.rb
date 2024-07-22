@@ -13,5 +13,5 @@ class Item < ApplicationRecord
   validates :genre_id, :name, :price, presence: true
 	validates :introduction, length: {maximum: 200}
 	validates :price, numericality: {only_integer: true}
-  
+	
 end
