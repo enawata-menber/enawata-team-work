@@ -18,7 +18,7 @@ class Customer < ApplicationRecord
             presence: true
   validates :postal_code, length: {is: 7}, numericality: {only_integer: true}
   validates :telephone_number, numericality: {only_integer: true}
-  validates :kana_first_name, :kana_last_name,
+  validates :first_name_kana, :last_name_kana,
   format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: "カタカナで入力して下さい。"}
     
   def full_name #フルネーム表示のため追加（おはる）
@@ -37,8 +37,8 @@ class Customer < ApplicationRecord
     end
   end
   
-  #退会済みかどうか確認する
+  #ユーザーがacitveの場合はtrueを返す
   def active_for_authentication?
-    super && (self.is_active == false)
+    super && (self.is_active == true)
   end
 end
