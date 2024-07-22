@@ -1,0 +1,24 @@
+  <div class = container>
+  <div class =row>
+      <h2>商品詳細</h2>
+      
+      <table class="item_show" style="display: flex;">
+<%= image_tag @item.image, size: "300x300" %>
+        <tr>
+          <th>商品名</th>
+          <th>商品説明</th>
+          <th>ジャンル</th>
+          <th>税込み価格<br>(税抜価格)</th>
+          <th>販売ステータス</th>
+        </tr>  
+        <tr>
+          <td><%= @item.name %></td>
+          <td><%= @item.introduction %></td>
+          <td><%= @item.genre.name %></td>
+          <td><%= @item.price.to_s(:delimited) %>円（<%= (@item.price * 1.1).floor.to_s(:delimited) %>円）</td>
+          <td><%= @item.is_active ? '販売中' : '販売停止中' %></td>
+        </tr>
+      </table>
+      <%= link_to '編集する', edit_admin_item_path(@item) %>
+  </div>
+</div>
