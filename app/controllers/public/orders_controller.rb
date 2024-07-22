@@ -1,4 +1,15 @@
 class Public::OrdersController < ApplicationController
+  
+  def index
+    @orders = current_customer.orders
+  end
+  
+  def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
+  end
+
+end
   before_action :set_devise_mapping , except: [:thanks]# Deviseに対して現在のリクエストがどのモデル（ここではcustomer）にマッピングされているかを手動で設定
   before_action :authenticate_customer!
   before_action :request_post?, only: [:confirm]

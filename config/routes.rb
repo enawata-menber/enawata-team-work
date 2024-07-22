@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-
-#ここから記載（たま）  
+  
+#ここから記載（たま）
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
@@ -21,6 +21,11 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about', to: 'homes#about'
     #public/items
+    resources :items, only: [:index, :show]
+  
+    # #public/customers
+    get '/customers/my_page', to: 'customers#show', as: 'customer_my_page'
+    get '/customers/information/edit', to: 'customers#edit', as: 'edit_customer_information'
     resources :items, only: [:index, :show] do #ジャンル検索ルート追加
      get 'items/search/:genre_id', to: 'items#search', as: 'search_public_items'
      end
