@@ -1,24 +1,31 @@
-<h2>管理者ログイン</h2>
+<h3 class="bg-secondary">管理者ログイン</h3>
 
+<!--h4 class="bg-secondary">会員の方はこちらからログイン</h4-->
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div></br>
 
-  <div class="field">
-    <%= f.label :パスワード %><%= f.password_field :password, autocomplete: "current-password" %>
-  </div></br>
-
-  <!--% if devise_mapping.rememberable? %>
-    <div class="field">
-      <!--%= f.check_box :remember_me %>
-      <!--%= f.label :remember_me %>
-    </div>
-  <!--% end %-->
-
-  <div class="actions">
-    <%= f.submit "Log in", class:"btn btn-primary" %> <!--まだ飛ばない-->
-  </div>
+　<table>
+　  <tr>
+      <th>メールアドレス</th>
+      <td>
+        <%= f.email_field :email, autofocus: true %>
+      </td>
+    </tr>
+    
+    <tr>
+      <th>パスワード</th>
+      <td>
+        <%= f.password_field :password %>
+      </td>
+    </tr>
+    
+    <tr>
+      <th></th>
+      <td>
+       <div class="btn btn-primary"> <%= f.submit 'ログイン' %> </div>
+      </td>
+    </tr>
+  </table>
 <% end %>
-
-<%= render "admin/shared/links" %>
+  
+<!--h4 class="bg-secondary">会員登録がお済でない方</h4>
+<!--%= link_to "こちら",   new_customer_registration_path %>から新規登録を行ってしてください-->
