@@ -9,7 +9,11 @@ class Item < ApplicationRecord
   has_one_attached :image
   
   def get_proauct_image(width, height)
-  # 画像の取得処理を実装する
+  unless image.attached?
+    file_path = Rails.root.join('app/assets/images/no_image.jpg')
+    image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+  end
+  image.variant(resize_to_limit: [width, height]).processed
   end
   
   #genre_id,name,price,の欠損確認
@@ -17,5 +21,4 @@ class Item < ApplicationRecord
   validates :genre_id, :name, :price, presence: true
 	validates :introduction, length: {maximum: 200}
 	validates :price, numericality: {only_integer: true}
-	
 end
