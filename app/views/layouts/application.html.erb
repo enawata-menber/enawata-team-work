@@ -36,15 +36,14 @@
                 <li class="nav-link text-light"><%= link_to 'マイページ',public_customer_my_page_path %></li>
                 <li class="nav-link text-light"><%= link_to '商品一覧',public_items_path %></li>
                 <li class="nav-link text-light"><%= link_to 'カート',public_cart_items_path %></li>
-                <li class="nav-link text-light"><%= link_to 'ログアウト',destroy_customer_session_path, method: :delete  %></li>
-                
+                <li class="nav-link text-light"><%= link_to 'ログアウト',destroy_public_session_path, method: :delete  %></li>
                 
                 <!--ログインしていない時ヘッダー画面-->
                 <% else %>
                 <li class="nav-link text-light"><%= link_to 'About',public_about_path %></li>
                 <li class="nav-link text-light"><%= link_to '商品一覧',public_items_path %></li>
                 <li class="nav-link text-light"><%= link_to '新規登録',new_customer_registration_path %></li>
-                <li class="nav-link text-light"><%= link_to 'ログイン',new_customer_session_path %></li>
+                <li class="nav-link text-light"><%= link_to 'ログイン',public_new_customer_session_path %></li>
                 <% end %>
               </ul>
            </div>
