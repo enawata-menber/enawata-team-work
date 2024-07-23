@@ -21,21 +21,39 @@ class Public::OrdersController < ApplicationController
   end
 
 def confirm
-  @order = Order.new(order_params)
+  @order = Order.new(order_params.except(:address_option,:selected_address_id, :new_name, :new_address, :new_postal_code))
   @cart_items = current_customer.cart_items
   @shipping_cost = calculate_shipping_cost(@order.address)
   @total_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount } + @shipping_cost
-
-  case params[:order][:address_option]
+  @addresses = current_customer.addresses
+  @peyment_methods = ['クレジットカード', '銀行振込']
+  @address_option = params[:order][:address_option]
+  case @address_option
   when 'self'
     @order.name = current_customer.full_name
     @order.address = current_customer.address
     @order.postal_code = current_customer.postal_code
   when 'select'
-    selected_address = current_customer.addresses.find(params[:order][:selected_address_id])
-    @order.name = selected_address.name
-    @order.address = selected_address.full_address
-    @order.postal_code = selected_address.postal_code
+    # @peyment_methods = ['クレジットカード', '銀行振込']
+    if params[:order][:selected_address_id].present?
+      selected_address = current_customer.addresses.find_by(id: params[:order][:selected_address_id])
+      if selected_address
+        @order.name = selected_address.name
+        @order.address = selected_address.full_address
+        @order.postal_code = selected_address.postal_code
+      else
+        # 選択されたアドレスが見つからない場合の処理
+         flash[:alert] = "選択したアドレスが見つかりませんでした"
+        render :new
+        return
+      end
+    else
+      # アドレスが選択されていない場合の処理
+      flash[:alert] = "アドレスを選択してください"
+      render :new
+      return
+    end
+    
   when 'new'
     @order.name = params[:order][:new_name]
     @order.address = params[:order][:new_address]
@@ -44,7 +62,7 @@ def confirm
 end
 
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(order_params.except(:address_option))
     @order.customer_id = current_customer.id
     @order.shipping_cost = 800
     @cart_items = current_customer.cart_items
@@ -64,6 +82,7 @@ end
     else
       render :confirm
     end
+  end
     # 例外処理用の記述
     # rescue => e
     # logger.error "Order creation failed: #{e.message}"
@@ -116,7 +135,7 @@ end
 
   # 指定されたパラメータのみがマスアサインメントで利用され、不正なパラメータの混入を防ぐ。
   def order_params
-   params.require(:order).permit(:delivery_address, :delivery_date, :peyment_method, :name, :address, :postal_code)
+   params.require(:order).permit(:address_option,:delivery_address,:selected_address_id, :delivery_date, :peyment_method, :name, :address, :postal_code)
   end
 
   # 指定された住所IDに基づいて送料を計算

@@ -26,19 +26,32 @@
     <tr><th bgcolor="#ffefd5">商品合計</th><td><%= number_to_currency(@cart_items.sum { |item| item.item.price * item.amount }, unit: '¥', precision: 0) %></td></tr>
     <tr><th bgcolor="#ffefd5">請求金額</th><td><%= number_to_currency(@total_price, unit: '¥', precision: 0) %></td></tr>
   </table>
-
+ <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
   <h2>支払方法</h2>
-  <p><%= @order.peyment_method %></p>
+  <% if @peyment_methods.present? %>
+    <p><%= @order.peyment_method %></p>
+  <% else %>
+    <p>支払い方法がありません</p>
+  <% end %>
 
   <h2>お届け先</h2>
   <p><%= @order.address %></p>
   <p><%= @order.name %></p>
 
-  <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
-  <%= f.hidden_field :peyment_method,value: @order.peyment_method %>
-  <%= f.hidden_field :address, value: @order.address %>
-  <%= f.hidden_field :name, value: @order.name %>
-  <%= f.hidden_field :postal_code, value: @order.postal_code %>
-  <%= f.submit '注文を確定する', class: 'btn btn-success' %>
-<% end %>
+  <% if @address_option != 'self' %>
+    <h2>登録済住所から選択</h2>
+    <div>
+      <%= f.radio_button :address_option, 'select' %>
+      <%= f.label :address_option, '登録済住所から選択' %><br>
+      <%= f.collection_select :selected_address_id, @addresses, :id, :full_address_with_name, { prompt: '選択してください' }, { class: 'form-control' } %><br>
+    </div>
+  <% end %>
+
+    <%= f.hidden_field :peyment_method, value: @order.peyment_method %>
+    <%= f.hidden_field :address, value: @order.address %>
+    <%= f.hidden_field :name, value: @order.name %>
+    <%= f.hidden_field :postal_code, value: @order.postal_code %>
+    <%= f.hidden_field :address_option, value:@address_option %> <!-- 修正: hidden_field を使用 -->
+    <%= f.submit '注文を確定する', class: 'btn btn-success' %>
+  <% end %>
 </div>

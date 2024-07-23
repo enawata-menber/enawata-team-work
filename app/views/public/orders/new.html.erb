@@ -1,4 +1,5 @@
 <div class="container takasa">
+  <div class="container takasa">
   <div class="row">
     <div class="col-xs-7">
       <h2><i class="fas fa-pen"></i>注文情報入力</h2>
@@ -6,9 +7,13 @@
       <%= form_with(model: @order, local: true, url: confirm_public_orders_path, method: :post) do |f| %>
         <div>
           <%= f.label :peyment_method, "支払い方法" %><br>
-          <% @peyment_methods.each do |method| %>
-            <%= f.radio_button :peyment_method, method %>
-            <%= f.label :peyment_method, method %><br>
+          <% if @peyment_methods.present? %>
+            <% @peyment_methods.each do |method| %>
+              <%= f.radio_button :peyment_method, method %>
+              <%= f.label :peyment_method, method %><br>
+            <% end %>
+          <% else %>
+            <p>支払い方法がありません</p>
           <% end %>
         </div>
         
@@ -25,7 +30,11 @@
         <%= f.radio_button :address_option, 'select' %>
         <%= f.label :address_option, '登録済住所から選択' %><br>
         <div>
-          <%= f.collection_select :selected_address_id, @addresses, :id, :full_address_with_name, { prompt: '選択してください' }, { class: 'form-control' } %><br>
+          <% if @addresses.present? %>
+            <%= f.collection_select :selected_address_id, @addresses, :id, :full_address_with_name, { prompt: '選択してください' }, { class: 'form-control' } %><br>
+          <% else %>
+            <p>登録済住所がありません</p>
+          <% end %>
         </div>
         
         <%= f.radio_button :address_option, 'new' %>
