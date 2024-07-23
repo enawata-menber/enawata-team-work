@@ -9,7 +9,7 @@
    <br>
    <div>
      <p>注文日</p>
-     <!--ここに追加-->
+        <%= @order.customer.created_at.strftime('%Y/%m/%d') %>
    </div>
    <br>
    <div>
