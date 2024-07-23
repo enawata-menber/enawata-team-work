@@ -1,20 +1,23 @@
 <script src="https://kit.fontawesome.com/fff1710ae4.js" crossorigin="anonymous"></script>
 <div class="container">
   <div class="row">
-    <%= link_to new_admin_item_path do %>
-      <i class="fa-solid fa-plus"></i>
-    <% end %>
+    <div class="bg-light pt-0 pb-0 pl-3 pr-3">
+      <h4>商品一覧</h4>
+    </div>
+      <%= link_to new_admin_item_path do %>
+        <i class="fa-solid fa-plus" style="font-size: 1.5rem; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></i>
+      <% end %>
   </div>
   
   <div class="row">
-    <table class="items_index">
-        <tr>
-          <th>商品ID</th>
-          <th>商品名</th>
-          <th>税抜価格</th>
-          <th>ジャンル</th>
-          <th>ステータス</th>
-        </tr>
+    <table class="table">
+      <tr class = "table-light">
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
         <% @items.each do |item| %>
           <tr>
             <td><%= item.id %></td>
@@ -22,12 +25,12 @@
             <td><%= item.price.to_s(:delimited) %></td>
             <td><%= item.genre.name %></td>
             <td>
-          <% if item.is_active %>
-            販売中
-          <% else %>
-            販売停止中
-          <% end %>
-        </td>
+              <% if item.is_active %>
+                <span class="text-success font-weight-bold">販売中</span>
+              <% else %>
+                <span class="text-secondary font-weight-bold">販売停止中</span>
+              <% end %>
+            </td>
           </tr>
         <% end %>
     </table>
