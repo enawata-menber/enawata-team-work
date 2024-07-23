@@ -15,8 +15,8 @@ class Admin::SessionsController < Devise::SessionsController
 
   #DELETE /resource/sign_out
   def destroy
-    #サインアウト処理
-     reset_session
+    サインアウト処理
+    reset_session
     redirect_to admin_root_path, notice: 'Signed out successfully.'
   end
 
