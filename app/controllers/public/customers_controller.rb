@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
   
   def show
     @customer = current_customer
@@ -24,8 +25,7 @@ class Public::CustomersController < ApplicationController
   def withdraw
     @customer = current_customer
     @customer.update(is_active: false)
-      redirect_to root_path
-      
+    redirect_to public_root_path
   end
   
   

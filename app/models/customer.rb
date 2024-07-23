@@ -25,12 +25,12 @@ class Customer < ApplicationRecord
     first_name + '' + last_name
   end
   
-  def full_name_kana #かなフルネーム表示のため追加（おはる）
-    kana_first_name + '' + kana_last_name
+  def full_name_kana #かなフルネーム表示のため追加（おはる）kanaの位置を修正(ひで)
+    first_name_kana + '' + last_name_kana
   end
   
-  def customer_status #会員ステータス追加（おはる）
-    if is_deleted == true
+  def customer_status #会員ステータス追加（おはる）is_activeでfalseに修正(ひで)
+    if is_active == false
       "退会"
     else
       "有効"
