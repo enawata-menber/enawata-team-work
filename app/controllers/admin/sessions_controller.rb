@@ -13,10 +13,12 @@ class Admin::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  #DELETE /resource/sign_out
+  def destroy
+    #サインアウト処理
+     reset_session
+    redirect_to admin_root_path, notice: 'Signed out successfully.'
+  end
 
   # protected
 
