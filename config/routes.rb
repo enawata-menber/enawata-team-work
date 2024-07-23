@@ -38,8 +38,6 @@ Rails.application.routes.draw do
     post '/customers/sign_in', to: 'sessions#create',as: 'customer_session'
     delete '/customers/sign_out',to: 'sessions#destroy',as: 'destroy_customer_session'
     #public/customers
-    #get '/custommers/my_page', to: 'customers#show', as: 'customer_my_page' #重複している
-    #get '//customers/information/edit', to: 'customers#edit', as: 'edit_customer_information'#重複している
     patch '/customers/information', to: 'customers#update', as:  'update_customer_information'
     get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
     patch '/customers/withdraw',to: 'customers#withdraw', as: 'customer_withdraw'
@@ -56,8 +54,6 @@ Rails.application.routes.draw do
         post 'confirm', to: 'orders#confirm', as: 'confirm'
         get 'thanks', to: 'orders#thanks', as: 'thanks'
       end
-      root to: 'public/orders#new' #追加
-
     end
     #public/addresses
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
@@ -86,4 +82,7 @@ Rails.application.routes.draw do
     #admin/order_details
     resources :order_details, only: [:update]
  end
+  # root設定を最上位に追加
+    root to: 'public/orders#new'
+    
 end

@@ -1,41 +1,44 @@
 <div class="container">
-    <h2>注文情報確認</h2>
-<table>
-     <thead>
-    <tr class="table-active">
-      <th scope="col">商品名</th>
-      <th scope="col">単価(税込)</th>
-      <th scope="col">数量</th>
-      <th scope="col">小計</th>
-    </tr>
-  </thead>
-   <% @cart_items.each do |item| %>
-  <tbody>
-    <tr>
-      <td><%= item.product.name %></td>
-      <td><%= number_to_currency(item.product.price) %></td>
-      <td><%= item.quantity %></td>
-      <td><%= number_to_currency(item.product.price * item.quantity) %></td>
-    </tr>
-    <% end %>
-   </tbody>
-</table>
+  <h2>注文情報確認</h2>
+  <table>
+    <thead>
+      <tr class="table-active">
+        <th scope="col">商品名</th>
+        <th scope="col">単価(税込)</th>
+        <th scope="col">数量</th>
+        <th scope="col">小計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |item| %>
+        <tr>
+          <td><%= item.item.name %></td>
+          <td><%= number_to_currency(item.item.price, unit: '¥', precision: 0) %></td>
+          <td><%= item.amount %></td>
+          <td><%= number_to_currency(item.item.price * item.amount, unit: '¥', precision: 0) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<table class="table col-2 border border-2 mt-2">
-  <tr><th bgcolor="#ffefd5">送料</th><td><%= number_to_currency(@shipping_cost) %></td></tr>
-  <tr><th bgcolor="#ffefd5">商品合計</th><td><%= number_to_currency(@cart_items.sum { |item| item.product.price * item.quantity }) %></td></tr>
-  <tr><th bgcolor="#ffefd5">請求金額</th><td><%= number_to_currency(@total_price) %></td></tr>
-</table>
+  <table class="table col-2 border border-2 mt-2">
+    <tr><th bgcolor="#ffefd5">送料</th><td><%= number_to_currency(@shipping_cost, unit: '¥', precision: 0) %></td></tr>
+    <tr><th bgcolor="#ffefd5">商品合計</th><td><%= number_to_currency(@cart_items.sum { |item| item.item.price * item.amount }, unit: '¥', precision: 0) %></td></tr>
+    <tr><th bgcolor="#ffefd5">請求金額</th><td><%= number_to_currency(@total_price, unit: '¥', precision: 0) %></td></tr>
+  </table>
 
-<h2>支払方法</h2>
-<p><%= @order.payment_method %></p>
+  <h2>支払方法</h2>
+  <p><%= @order.peyment_method %></p>
 
-<h2>お届け先</h2>
-<p><%= @order.address %></p>
-<p><%= @order.name %></p>
+  <h2>お届け先</h2>
+  <p><%= @order.address %></p>
+  <p><%= @order.name %></p>
 
-<%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
-  <%= f.hidden_field :payment_method %>
-  <%= f.hidden_field :address_id %>
-  <%= f.submit '注文を確定する' class: 'btn btn-success' %>
+  <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
+  <%= f.hidden_field :peyment_method,value: @order.peyment_method %>
+  <%= f.hidden_field :address, value: @order.address %>
+  <%= f.hidden_field :name, value: @order.name %>
+  <%= f.hidden_field :postal_code, value: @order.postal_code %>
+  <%= f.submit '注文を確定する', class: 'btn btn-success' %>
 <% end %>
+</div>
