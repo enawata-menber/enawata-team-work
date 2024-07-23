@@ -1,0 +1,75 @@
+<h3>新規会員登録</h3>
+
+<%= form_with model: @customer, url:  customer_registration_path do |f| %>
+  <%= render "public/shared/error_messages", resource: resource %>
+    <div class="row mb-1">
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">名前</label>
+      <div class="col-sm-6">
+        <div class="d-flex align-items-center">
+          <%= f.text_field :last_name, autofocus: true, class: "form-control form-control-sm mr-3", placeholder: "姓" %>
+          <%= f.text_field :first_name, autofocus: true, class: "form-control form-control-sm", placeholder: "名" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row mb-1">
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">フリガナ</label>
+      <div class="col-sm-6">
+        <div class="d-flex align-items-center">
+          <%= f.text_field :last_name_kana, autofocus: true, class: "form-control form-control-sm mr-3", placeholder: "セイ" %>
+          <%= f.text_field :first_name_kana, autofocus: true, class: "form-control form-control-sm", placeholder: "メイ" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row mb-1">
+      <label for="email" class="col-sm-2 col-form-label col-form-label-sm">メールアドレス</label>
+      <div class="col-sm-2">
+        <%= f.email_field :email, autofocus: true, class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    
+    <div class="row mb-1">
+      <label for="postal_code" class="col-sm-2 col-form-label col-form-label-sm whitespace-nowrap">郵便番号(ハイフンなし)</label>
+      <div class="col-sm-2">
+        <%= f.text_field :postal_code, autofocus: true, class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    
+    <div class="row mb-1">
+      <label for="address" class="col-sm-2 col-form-label col-form-label-sm">住所</label>
+      <div class="col-sm-4">
+        <%= f.text_field :address, autofocus: true, class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    
+    <div class="row mb-1">
+      <label for="telephone_number" class="col-sm-2 col-form-label col-form-label-sm">電話番号(ハイフンなし)</label>
+      <div class="col-sm-2">
+        <%= f.text_field :telephone_number, autofocus: true, class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    
+    <div class="row mb-1">
+      <label for="password" class="col-sm-2 col-form-label col-form-label-sm">パスワード(6文字以上)</label>
+      <div class="col-sm-2">
+        <%= f.password_field :password, class: "form-control form-control-sm"%>
+      </div>
+    </div>
+    
+    <div class="row mb-1">
+      <label for="password_confirmation" class="col-sm-2 col-form-label col-form-label-sm">パスワード(確認用)</label>
+      <div class="col-sm-2">
+        <%= f.password_field :password_confirmation, class: "form-control form-control-sm"%>
+      </div>
+    </div>
+    
+    <div class="row mb-1">
+      <div class="col-sm-2 offset-sm-2">
+        <%= f.submit "新規登録", class: 'btn btn-success' %>
+      </div>
+    </div>
+<% end %>
+
+<h3>既に登録済みの方</h3>
+<%= link_to "こちら", new_customer_session_path %>からログインしてください
