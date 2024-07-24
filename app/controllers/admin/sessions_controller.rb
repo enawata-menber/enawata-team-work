@@ -14,19 +14,19 @@ class Admin::SessionsController < Devise::SessionsController
   # end
 
   #DELETE /resource/sign_out
-  def destroy
-    サインアウト処理
-    reset_session
-    redirect_to admin_root_path, notice: 'Signed out successfully.'
-  end
+  #def destroy
+    #サインアウト処理
+    #reset_session
+    #redirect_to admin_root_path, notice: 'Signed out successfully.'
+  #end
 
   # protected
   def after_sign_in_path_for(resource)
-    admin_oders_path #注文履歴一覧へ
+    admin_orders_path #注文履歴一覧へ
   end
 
   def after_sign_out_path_for(resource)
-    admin_root_path
+    admin_session_path
   end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
