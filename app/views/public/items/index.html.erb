@@ -1,0 +1,54 @@
+
+<div class="container">
+  <div class="row">
+    <!--ジャンル検索-->
+    <div class="col-md-3">
+      <div class="mt-5">
+        <%= render 'public/shared/genre_links', genres: @genres %>
+      </div>
+    </div>
+    <!--商品一覧&ジャンル一覧-->
+    <div class="col-md-9">
+      <% if @genre.present? %>
+        <h2 class="text-center mt-5"><%= @genre.name %>一覧<span style="font-size: 20px">(全<%= @item_count %>件)</span></h2>
+        <!--選択されたジャンルに基づく商品一覧-->
+      <% else %>
+        <h2 class="text-center mt-5 mx-5">商品一覧<span style="font-size: 20px">(全<%= @item_count %>件)</span></h2>
+        <!--全商品一覧-->
+      <% end %>
+
+     <% if @items.any? %>
+  <% @items.in_groups_of(4, false).each do |group| %>  <!-- 4つの商品ごとにグループ化 -->
+    <div class="row">
+      <% group.each do |item| %>
+        <div class="col-md-3 mb-4">  <!-- Bootstrapのカラム設定 -->
+          <div class="card">
+            <% if item.image.attached? %>
+              <%= link_to image_tag(item.image, class: 'card-img-top', alt: "#{item.name}の画像"), public_item_path(item) %>
+            <% else %>
+              <%= link_to image_tag('default_image_path.jpg', class: 'card-img-top', alt: "#{item.name}の画像"), public_item_path(item) %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= link_to item.name, public_item_path(item) %>
+              </h5>
+              <p class="card-text">¥<%= item.price %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <p class="text-center mt-5">商品がありません</p>
+<% end %>
+    </div>
+  </div>
+
+  <!--ページネーション表示-->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>
