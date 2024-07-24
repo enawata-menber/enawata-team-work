@@ -27,7 +27,7 @@
   <table border="2" style="border-collapse: collapse">
     <tr>
       <th style="width: 100px;">商品合計</th>
-      <td style="width: 300px;"><%= @order.total_payment %>円</td>
+      <td style="width: 300px;"><%= @order.total_payment - 800 %>円</td>
     </tr>
       
     <tr>
@@ -37,7 +37,7 @@
       
     <tr>
       <th style="width: 100px;">ご請求額</th>
-      <td style="width: 300px;"><%= @order.total_payment + 800 %>円</td>
+      <td style="width: 300px;"><%= @order.total_payment %>円</td>
     </tr>
   </table>
 <h4>注文内容</h4>
