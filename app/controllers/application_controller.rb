@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-    # ヘッダーの切替用
+  # ヘッダーの切替用
     before_action :set_header
+
 
   private
 
@@ -15,3 +16,4 @@ class ApplicationController < ActionController::Base
   end
   
 end
+
