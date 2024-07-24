@@ -16,11 +16,11 @@
             </tr>
             <tr>
               <td><%= f.label :商品名 %></td>
-              <td><%= f.text_field :name, class: "w-100" %></td>
+              <td><%= f.text_field :name, class: "w-100", placeholder: '商品名' %></td>
             </tr>
             <tr>
               <td><%= f.label :商品説明 %></td>
-              <td><%= f.text_area :introduction, class: "w-100" %></td>
+              <td><%= f.text_area :introduction, class: "w-100", placeholder: 'ここに説明文を記述します' %></td>
             </tr>
             <tr>
               <td><%= f.label :ジャンル %></td>
@@ -28,7 +28,7 @@
             </tr>
             <tr>
               <td><%= f.label :税抜価格 %></td>
-              <td><%= f.text_field :price, class: "w-100" %></td>
+              <td><%= f.text_field :price, class: "w-100", placeholder: '1000' %></td>
             </tr>
             <tr>
               <td><%= f.label :販売ステータス %></td>
