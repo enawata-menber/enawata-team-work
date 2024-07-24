@@ -26,6 +26,12 @@ Rails.application.routes.draw do
     # #public/customers
     get '/customers/my_page', to: 'customers#show', as: 'customer_my_page'
     get '/customers/information/edit', to: 'customers#edit', as: 'edit_customer_information'
+    resources :items, only: [:index, :show] do #ジャンル検索ルート追加
+     get 'items/search/:genre_id', to: 'items#search', as: 'search_public_items'
+     end
+    
+    
+    #public/customers
     patch '/customers/information', to: 'customers#update', as:  'update_customer_information'
     get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
     patch '/customers/withdraw',to: 'customers#withdraw', as: 'customer_withdraw'
@@ -70,4 +76,7 @@ Rails.application.routes.draw do
     #admin/order_details
     resources :order_details, only: [:update]
  end
+  # root設定を最上位に追加
+    root to: 'public/orders#new'
+    
 end
