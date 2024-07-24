@@ -56,13 +56,13 @@ Rails.application.routes.draw do
   #Admin routes
   #admin/sessions
     namespace :admin do
-    resource :session, only: [:new, :create, :destroy], controller: 'sessions' do
-      collection do
-        get 'sign_in', action: :new
-        post 'sign_in', action: :create
-        delete 'sign_out', action: :destroy
-      end
-    end
+    #resource :session, only: [:new, :create, :destroy], controller: 'sessions' do
+    #  collection do
+     #   get 'sign_in', action: :new
+    #    post 'sign_in', action: :create
+    #    delete 'sign_out', action: :destroy
+    #  end
+    #end
     #admin/homes
     root to: 'admin/homes#top'
     #admin/items
