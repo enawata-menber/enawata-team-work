@@ -1,6 +1,17 @@
 <h3>会員情報編集</h3>
 
+<% if @customer.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with model: @customer, url: public_update_customer_information_path do |f| %>
+
   
 <div class="row mb-1">
   <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">名前</label>

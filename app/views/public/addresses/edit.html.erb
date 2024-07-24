@@ -1,4 +1,13 @@
 <h3>配送先編集</h3>
+<% if @address.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
     <%= form_with model: @address, url: public_address_path, local: true  ,method: :patch do |f| %> 
       <div class="row mb-1">
