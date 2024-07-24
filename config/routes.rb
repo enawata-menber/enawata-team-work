@@ -30,13 +30,7 @@ Rails.application.routes.draw do
      get 'items/search/:genre_id', to: 'items#search', as: 'search_public_items'
      end
     
-    #public/registrations
-    get '/customers/sign_up', to: 'registrations#new'
-    post '/customers', to: 'registrations#create'
-    #public/sessions
-    get '/customers/sign_in', to: 'sessions#new',as: 'new_customer_session'
-    post '/customers/sign_in', to: 'sessions#create',as: 'customer_session'
-    delete '/customers/sign_out',to: 'sessions#destroy',as: 'destroy_customer_session'
+    
     #public/customers
     patch '/customers/information', to: 'customers#update', as:  'update_customer_information'
     get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
