@@ -1,7 +1,7 @@
 <div class = container>
   <div class =row>
     <h2>ジャンル編集</h2>
-<%= form_with(model: @genre, url: admin_genre_path(@genre), method: :patch) do |f| %>
+      <%= form_with(model: @genre, url: admin_genre_path(@genre), method: :patch) do |f| %>
           <%= f.label :ジャンル %>
             <%= f.text_field :name  %>
           <%= f.submit '変更を保存' %>
