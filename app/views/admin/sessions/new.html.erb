@@ -1,30 +1,27 @@
-<h3 class="bg-secondary">管理者ログイン</h3>
+<h3>管理者ログイン</h3>
 
 <!--h4 class="bg-secondary">会員の方はこちらからログイン</h4-->
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-　<table>
-　  <tr>
-      <th>メールアドレス</th>
-      <td>
-        <%= f.email_field :email, autofocus: true %>
-      </td>
-    </tr>
+    <div class="row mb-1">
+      <label for="email" class="col-sm-2 col-form-label col-form-label-sm">メールアドレス</label>
+      <div class="col-sm-2">
+        <%= f.email_field :email, autofocus: true, class: "form-control form-control-sm" %>
+      </div>
+    </div>
     
-    <tr>
-      <th>パスワード</th>
-      <td>
-        <%= f.password_field :password %>
-      </td>
-    </tr>
-    
-    <tr>
-      <th></th>
-      <td>
-       <div class="btn btn-primary"> <%= f.submit 'ログイン' %> </div>
-      </td>
-    </tr>
-  </table>
+    <div class="row mb-1">
+      <label for="password" class="col-sm-2 col-form-label col-form-label-sm">パスワード(6文字以上)</label>
+      <div class="col-sm-2">
+        <%= f.password_field :password, class: "form-control form-control-sm"%>
+      </div>
+    </div>
+  
+    <div class="row mb-1">
+        <div class="col-sm-2 offset-sm-2">
+          <%= f.submit "ログイン", class: 'btn btn-success btn-sm' %>
+        </div>
+      </div>
 <% end %>
   
 <!--h4 class="bg-secondary">会員登録がお済でない方</h4>
