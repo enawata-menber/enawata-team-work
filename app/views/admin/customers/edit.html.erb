@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h4><%= @customer.full_name %>さんの会員情報編集</h4>
+            <h4><%= (@customer.last_name + @customer.first_name) %>さんの会員情報編集</h4>
             <table class="table">
                 
               <%= form_with model: [:admin, @customer] do |f| %>
