@@ -21,14 +21,14 @@ class Public::OrdersController < ApplicationController
   end
 
 def confirm
-  @order = Order.new(order_params.except(:address_option,:selected_address_id, :new_name, :new_address, :new_postal_code))
+  @order = Order.new(order_params.except(:address_option,:selected_address_id))
   @cart_items = current_customer.cart_items
   @shipping_cost = calculate_shipping_cost(@order.address)
   @total_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount } + @shipping_cost
   @addresses = current_customer.addresses
-  @peyment_methods = ['クレジットカード', '銀行振込']
-  @address_option = params[:order][:address_option]
-  case @address_option
+  
+  address_option = params[:order][:address_option]
+  case address_option
   when 'self'
     @order.name = current_customer.full_name
     @order.address = current_customer.address
@@ -39,7 +39,7 @@ def confirm
       selected_address = current_customer.addresses.find_by(id: params[:order][:selected_address_id])
       if selected_address
         @order.name = selected_address.name
-        @order.address = selected_address.full_address
+        @order.address = selected_address.address
         @order.postal_code = selected_address.postal_code
       else
         # 選択されたアドレスが見つからない場合の処理
@@ -53,11 +53,6 @@ def confirm
       render :new
       return
     end
-    
-  when 'new'
-    @order.name = params[:order][:new_name]
-    @order.address = params[:order][:new_address]
-    @order.postal_code = params[:order][:new_postal_code]
   end
 end
 
