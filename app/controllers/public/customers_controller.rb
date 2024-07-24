@@ -11,10 +11,12 @@ class Public::CustomersController < ApplicationController
   
   def update
     @customer = current_customer
-    if @customer.update(customer_params)
-       redirect_to public_customer_my_page_path
+    if@customer.update(customer_params)
+      flash[:notice] = "変更内容を登録しました"
+      redirect_to public_customer_my_page_path
     else
-       render :edit
+       @customer = current_customer
+      render :edit
     end
   end
   
@@ -25,7 +27,9 @@ class Public::CustomersController < ApplicationController
   def withdraw
     @customer = current_customer
     @customer.update(is_active: false)
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to public_root_path
+    
   end
   
   
