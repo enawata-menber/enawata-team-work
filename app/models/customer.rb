@@ -19,7 +19,7 @@ class Customer < ApplicationRecord
   validates :postal_code, length: {is: 7}, numericality: {only_integer: true}
   validates :telephone_number, numericality: {only_integer: true}
   validates :first_name_kana, :last_name_kana,
-  format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: "カタカナで入力して下さい。"}
+  format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
     
   def full_name #フルネーム表示のため追加（おはる）
     first_name + '' + last_name
