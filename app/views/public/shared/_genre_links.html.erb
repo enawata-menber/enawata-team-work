@@ -1,0 +1,18 @@
+<%# views/shared/_genre_search.html.erb %>
+
+  <div class="card">
+    <div class="card-header text-center">
+      <h5 class="mb-0">ジャンル検索</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <% if genres.present? %>
+        <% genres.each do |genre| %>
+          <li class="list-group-item">
+            <%= link_to genre.name, public_items_path(genre_id: genre.id), method: :get, class: 'stretched-link' %>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="list-group-item">ジャンルがありません</li>
+      <% end %>
+    </ul>
+  </div>
