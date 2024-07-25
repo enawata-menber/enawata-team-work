@@ -21,7 +21,7 @@
           <p><%= @item.introduction %></p>
           <p class="fs-5">
             ¥
-            <span class="price-with-tax"><%= number_to_currency(@item.price, unit: '', format: '%n', precision: 0) %></span>
+            <span class="price-with-tax"><%= @item.with_tax_price%></span>
             <span class="tax-label small">（税込）</span>
           </p>
           <!--プルダウンメニューでの個数選択-->
