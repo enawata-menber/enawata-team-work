@@ -12,19 +12,22 @@
     <tbody>
       <% @cart_items.each do |item| %>
         <tr>
-          <td><%= item.item.name %></td>
-          <td><%= number_to_currency(item.item.price, unit: '¥', precision: 0) %></td>
+          <td>
+            <%= image_tag item.item.image.attached? ? item.item.image.variant(resize: "50x50") : "no_image.jpg", alt: item.item.name %>
+            <%= item.item.name %>
+            </td>
+          <td><%= number_to_currency(item.item.with_tax_price, unit: '', precision: 0)%></td>
           <td><%= item.amount %></td>
-          <td><%= number_to_currency(item.item.price * item.amount, unit: '¥', precision: 0) %></td>
+          <td><%= number_to_currency(item.subtotal, unit: '', precision: 0) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
   <table class="table col-2 border border-2 mt-2">
-    <tr><th bgcolor="#ffefd5">送料</th><td><%= number_to_currency(@shipping_cost, unit: '¥', precision: 0) %></td></tr>
-    <tr><th bgcolor="#ffefd5">商品合計</th><td><%= number_to_currency(@cart_items.sum { |item| item.item.price * item.amount }, unit: '¥', precision: 0) %></td></tr>
-    <tr><th bgcolor="#ffefd5">請求金額</th><td><%= number_to_currency(@total_price, unit: '¥', precision: 0) %></td></tr>
+    <tr><th bgcolor="#ffefd5">送料</th><td><%= number_to_currency(@shipping_cost, unit: '', precision: 0) %></td></tr>
+    <tr><th bgcolor="#ffefd5">商品合計</th><td><%= number_to_currency(@total_price,unit: '', precision: 0) %></td></tr>
+    <tr><th bgcolor="#ffefd5">請求金額</th><td><%= number_to_currency(@order.total_payment, unit: '', precision: 0) %></td></tr>
   </table>
  <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
   <h2>支払方法</h2>

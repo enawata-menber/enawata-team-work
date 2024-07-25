@@ -13,11 +13,13 @@
     <tr>
       <td style="width: 100px;"><%= order.created_at.strftime('%Y/%m/%d') %></td>
       <td style="width: 300px;"><%= order.order_address %></td>
-      <td style="width: 100px;"><%= order.order_details.item_id %></td>
-      <td style="width: 100px;"><%= order.total_payments %></td>
+      <% order.order_details.each do |order_detail| %>
+        <td class="text-wrap" style="width: 100px;"><%= order_detail.item.name %></td>
+      <% end %>
+      <td style="width: 100px;"><%= order.total_payment %></td>
       <td style="width: 100px;"><%= order.status %></td>
       <td class="text-center">
-      <%= link_to "表示する", public_order_path, class: "btn btn-primary" %>
+      <%= link_to "表示する", public_order_path(order), class: "btn btn-primary" %>
       </td>
     </tr>
   <% end %>

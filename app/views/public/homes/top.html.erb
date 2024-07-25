@@ -5,7 +5,7 @@
     <!-- 左側のジャンルリンク -->
     <div class="col-md-3">
       <div class="mt-5">
-        <!--%= render 'public/shared/genre_links', genres: @genres %>-->
+        <%= render 'public/shared/genre_links', genres: @genres %>
       </div>
     </div>
 
@@ -31,7 +31,7 @@
           <% @items.each do |item| %>
             <%= link_to public_item_path(item.id), class: "text-decoration-none w-25" do %>
               <div class="card m-2 p-1 card-hover">
-                <%= image_tag item.get_proauct_image(100, 100), class: "card-img-top rounded shadow-sm" %>
+                <%= image_tag item.get_product_image(100, 100), class: "card-img-top rounded shadow-sm" %>
                 <div class="card-body text-body">
                   <h5 class="card-title text-primary"><%= item.name %></h5>
                   <p class="card-text text-primary">¥<%= item.price %></p>
