@@ -6,7 +6,8 @@ class Public::CartItemsController < ApplicationController
   # カート内商品一覧画面(数量変更・カート削除の要素を含む)
   def index
     @cart_items = current_customer.cart_items
-    @total_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount }
+    #@total_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount }
+    @total_price = @cart_items.sum { |item| item.subtotal }
 
     Rails.logger.debug "Current customer: #{current_customer.inspect}"
     Rails.logger.debug "Cart items: #{@cart_items.inspect}"

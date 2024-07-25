@@ -24,7 +24,8 @@ def confirm
   @order = Order.new(order_params.except(:address_option,:selected_address_id))
   @cart_items = current_customer.cart_items
   @shipping_cost = calculate_shipping_cost(@order.address)
-  @total_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount } + @shipping_cost
+  @total_price = @cart_items.sum { |item| item.subtotal }
+  @order.total_payment = @total_price + @shipping_cost
   @addresses = current_customer.addresses
   
   address_option = params[:order][:address_option]
