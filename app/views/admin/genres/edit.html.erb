@@ -11,7 +11,7 @@
   <% if f.object.errors.any? %>
     <div class="alert alert-danger">
       <% f.object.errors.full_messages.each do |message| %>
-        <p><%= '入力してください' %></p>
+        <p><%= message %></p>
       <% end %>
     </div>
   <% end %>

@@ -10,7 +10,7 @@
       <div class="alert alert-danger">
         <ul>
           <% @genre.errors.full_messages.each do |message| %>
-            <li><%= '入力してください' %></li>
+            <li><%= message %></li>
           <% end %>
         </ul>
       </div>
