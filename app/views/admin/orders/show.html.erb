@@ -17,8 +17,8 @@
    </div>
    <div>
      <p>配送先
-        〒<%= (@order.customer.postal_code).to_s.insert(3, "-") %>
-        <%= @order.order_address %>
+        〒<%= @order.postal_code %>
+        <%= @order.address %>
      </p>
    </div>
    <div>
@@ -28,8 +28,9 @@
    </div>
    <div>
     <p>注文ステータス
-       <%= form_with model:@order, url: admin_order_path, local: true do |f| %>
-          <%= f.select :status, ["入金待ち", "入金確認","製作中","発送準備中","発送済み"] %>
+       <%= form_with model:@order, url: admin_order_path(@order), method: :patch do |f| %>
+          <!--%= f.select :status, ["入金待ち", "入金確認","製作中","発送準備中","発送済み"] %-->
+          <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
           <%= f.submit "更新", class: 'btn btn-primary' %>
        <% end %>
     </p>
@@ -56,10 +57,12 @@
            <td><%= (order_detail.price*1.1).floor.to_s(:delimited) %></td>
            <td><%= order_detail.amount %></td>
            <td><%= (order_detail.item.price * order_detail.amount).to_s %>円</td>
-           <td><%= form_with model:order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
-                   <%= f.select :make_status, ["製作不可", "製作待ち", "製作中", "製作完了"] %>
-                   <%= f.submit "更新", class: 'btn btn-primary' %>
-                 <% end %></td>
+           <td><%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+                  <!--%= f.select :makings_status, ["着手不可", "製作待ち","製作中","製作確認"] %-->
+                  <%= f.select :makings_status, OrderDetail.makings_statuses.keys.map {|k| [I18n.t("enums.order_detail.makings_status.#{k}"), k]} %>
+                  <%= f.submit "更新", class: 'btn btn-primary' %>
+               <% end %>
+           </td>
           </tr>
          </tbody>
          <% end %>
