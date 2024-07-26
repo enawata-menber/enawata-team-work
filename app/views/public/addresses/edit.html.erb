@@ -1,9 +1,9 @@
-<h3>配送先編集</h3>
+<h3 class="mx-1 my-4">配送先編集</h3>
 <%= render 'layouts/errors', obj: @address %>
 
     <%= form_with model: @address, url: public_address_path, local: true  ,method: :patch do |f| %> 
       <div class="row mb-1">
-        <label for="email" class="col-sm-2 col-form-label col-form-label-sm">郵便番号(ハイフンなし)</label>
+        <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>郵便番号(ハイフンなし)</strong></label>
         <div class="col-sm-2">
           <%= f.text_field :postal_code, autofocus: true, class: "form-control form-control-sm" %>
         </div>
@@ -11,14 +11,14 @@
       
       
       <div class="row mb-1">
-        <label for="email" class="col-sm-2 col-form-label col-form-label-sm">住所</label>
+        <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>住所</strong></label>
         <div class="col-sm-2">
           <%= f.text_field :address, autofocus: true, class: "form-control form-control-sm" %>
         </div>
       </div>
       
       <div class="row mb-1">
-        <label for="email" class="col-sm-2 col-form-label col-form-label-sm">宛名</label>
+        <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>宛名</strong></label>
         <div class="col-sm-2">
           <%= f.text_field :name, autofocus: true, class: "form-control form-control-sm" %>
         </div>

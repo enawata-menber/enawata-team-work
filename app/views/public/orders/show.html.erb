@@ -1,4 +1,4 @@
-<h3>注文履歴詳細</h3>
+<h3 class="mx-1 my-4">注文履歴詳細</h3>
 
 <h4>注文情報</h4>
   <table border="2" style="border-collapse: collapse">
@@ -9,7 +9,10 @@
       
     <tr>
       <th style="width: 150px;">配送先</th>
-      <td style="width: 300px;"><%= @order.order_address %></td>
+      <td style="width: 300px;">
+        <%= @order.postal_code %><br>
+          <%= @order.address %><br>
+          <%= @order.name %></td>
     </tr>
       
     <tr>
@@ -19,41 +22,42 @@
       
     <tr>
       <th style="width: 150px;">ステータス</th>
-      <td style="width: 300px;"><%= @order.status %></td>
+      <td style="width: 300px;"><%= @order.status_i18n %></td>
+    </tr>
+  </table>
+  
+  <h4>注文内容</h4>
+  <table border="2" style="border-collapse: collapse">
+    <tr>
+      <th style="width: 100px;">商品</th>
+      <th style="width: 150px;">単価（税込み）</th>
+      <th style="width: 100px;">個数</th>
+      <th style="width: 100px;">小計</th>
+    </tr>
+    <tr>
+      <% @order_details.each do |order_detail| %>
+        <td style="width: 200px;"><%= order_detail.item.name %></td>
+        <td style="width: 100px;"><%= order_detail.item.price %>円</td>
+        <td style="width: 100px;"><%= order_detail.amount %></td>
+        <td style="width: 100px;"><%= (order_detail.item.price * order_detail.amount).to_s %>円</td>
+      <% end %>
     </tr>
   </table>
   
 <h4>請求情報</h4>
   <table border="2" style="border-collapse: collapse">
     <tr>
-      <th style="width: 100px;">商品合計</th>
-      <td style="width: 300px;"><%= @order.total_payment - 800 %>円</td>
+      <th>商品合計</th>
+      <td><%= @order.total_payment - 800 %>円</td>
     </tr>
       
     <tr>
-      <th style="width: 100px;">配送料</th>
-      <td style="width: 300px;"><%= 800 %>円</td>
+      <th>配送料</th>
+      <td><%= 800 %>円</td>
     </tr>
       
     <tr>
-      <th style="width: 100px;">ご請求額</th>
-      <td style="width: 300px;"><%= @order.total_payment %>円</td>
-    </tr>
-  </table>
-<h4>注文内容</h4>
-  <table border="2" style="border-collapse: collapse">
-    <tr>
-      <th style="width: 300px;">商品</th>
-      <th style="width: 100px;">単価（税込み）</th>
-      <th style="width: 100px;">個数</th>
-      <th style="width: 100px;">小計</th>
-    </tr>
-    <tr>
-      <% @order_details.each do |order_detail| %>
-        <td style="width: 300px;"><%= order_detail.item.name %></td>
-        <td style="width: 100px;"><%= order_detail.item.price %>円</td>
-        <td style="width: 100px;"><%= order_detail.amount %></td>
-        <td style="width: 100px;"><%= (order_detail.item.price * order_detail.amount).to_s %>円</td>
-      <% end %>
+      <th>ご請求額</th>
+      <td><%= @order.total_payment %>円</td>
     </tr>
   </table>

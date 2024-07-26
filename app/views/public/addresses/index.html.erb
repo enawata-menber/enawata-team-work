@@ -1,9 +1,9 @@
-<h3>配送先登録/一覧</h3>
+<h3 class="mx-1 my-4">配送先登録/一覧</h3>
 <%= render 'layouts/errors', obj: @address %>
 
   <%= form_with model: @address, url: public_addresses_path do |f| %> 
     <div class="row mb-1">
-      <label for="email" class="col-sm-2 col-form-label col-form-label-sm">郵便番号(ハイフンなし)</label>
+      <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>郵便番号(ハイフンなし)</strong></label>
       <div class="col-sm-2">
         <%= f.text_field :postal_code, autofocus: true, class: "form-control form-control-sm" %>
       </div>
@@ -11,14 +11,14 @@
       
       
     <div class="row mb-1">
-      <label for="email" class="col-sm-2 col-form-label col-form-label-sm">住所</label>
+      <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>住所</strong></label>
       <div class="col-sm-2">
         <%= f.text_field :address, autofocus: true, class: "form-control form-control-sm" %>
       </div>
     </div>
       
     <div class="row mb-1">
-      <label for="email" class="col-sm-2 col-form-label col-form-label-sm">宛名</label>
+      <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>宛名</strong></label>
       <div class="col-sm-2">
         <%= f.text_field :name, autofocus: true, class: "form-control form-control-sm" %>
       </div>
@@ -35,11 +35,11 @@
   <br>
   
   <table border="2" style="border-collapse: collapse">
-  <tr>
-    <th style="width: 100px;">郵便番号</th>
-    <th style="width: 300px;">住所</th>
-    <th style="width: 200px;">宛名</th>
-    <th></th>
+   <tr>
+    <th style="width: 100px;" class="table-light">郵便番号</th>
+    <th style="width: 300px;" class="table-light">住所</th>
+    <th style="width: 200px;" class="table-light">宛名</th>
+    <th style="width: 200px;" class="table-light"></th></th>
   </tr>
   <% @addresses.each do |address| %>
   <tr>

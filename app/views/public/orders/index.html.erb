@@ -1,4 +1,4 @@
-<h3>注文履歴一覧</h3>
+<h3 class="mx-1 my-4">注文履歴一覧</h3>
 
 <table border="2" style="border-collapse: collapse">
   <tr>
@@ -17,7 +17,7 @@
         <td class="text-wrap" style="width: 100px;"><%= order_detail.item.name %></td>
       <% end %>
       <td style="width: 100px;"><%= order.total_payment %></td>
-      <td style="width: 100px;"><%= order.status %></td>
+      <td style="width: 100px;"><%= order.status_i18n %></td>
       <td class="text-center">
       <%= link_to "表示する", public_order_path(order), class: "btn btn-primary" %>
       </td>
