@@ -6,7 +6,7 @@
       <th width="200">購入者</th>
       <td>
         <%= link_to admin_customer_path(@order) do %>
-          <%= @order.customer.first_name %><%= @order.customer.last_name %>
+          <%= @order.customer.last_name %><%= @order.customer.first_name %>
         <% end %>
       </td>
     </tr>
@@ -58,9 +58,9 @@
          <tbody>
           <tr>
            <td><%= order_detail.item.name %></td>
-           <td><%= (order_detail.price*1.1).floor.to_s(:delimited) %></td>
+           <td><%= order_detail.with_tax_price.to_s(:delimited) %></td>
            <td><%= order_detail.amount %></td>
-           <td><%= (order_detail.item.price * order_detail.amount).to_s %>円</td>
+           <td><%= (order_detail.with_tax_price * order_detail.amount).floor.to_s(:delimited) %></td>
            <td><%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
                   <!--%= f.select :makings_status, ["着手不可", "製作待ち","製作中","製作確認"] %-->
                   <%= f.select :makings_status, OrderDetail.makings_statuses.keys.map {|k| [I18n.t("enums.order_detail.makings_status.#{k}"), k]} %>
@@ -76,8 +76,8 @@
     <div class="col-md-4 pl-3">
       <div>
          <p><strong>商品合計</strong>
-         <%= @order.total_payment - 800 %>円
-         </>
+         <%= @order.with_tax_total_payment %> 円
+         </p>
       </div>
       <div>
          <p><strong>送料</strong>
@@ -86,7 +86,7 @@
       </div>
       <div>
        <p><strong>請求金額合計</strong>
-       <span class="text-dark font-weight-bold"><%= @order.total_payment %>円</span></p>
+       <span class="text-dark font-weight-bold"><%= @order.with_tax_total_payment + @shipping_cost %> 円</span></p>
        </p>
       </div>
     </div>

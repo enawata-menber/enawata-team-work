@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
   #郵便番号を7桁に指定、numericalityで数値であるか検証、only_integerで整数のみに制限
   #電話番号はnumericalityで数値であるか検証、only_integerで整数のみに制限
   #カタカナのみの入力に制限
-  validates :first_name, :last_name,
+  validates :last_name, :first_name, 
             :postal_code, :telephone_number,
             presence: true
   validates :postal_code, length: {is: 7}, numericality: {only_integer: true}

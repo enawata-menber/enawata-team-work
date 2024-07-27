@@ -40,9 +40,9 @@
       <% @order_details.each do |order_detail| %>
         <tr colspan="4">
           <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.item.price %>円</td>
+          <td><%= order_detail.item.with_tax_price %>円</td>
           <td><%= order_detail.amount %></td>
-          <td><%= (order_detail.item.price * order_detail.amount).to_s %>円</td>
+          <td><%= (order_detail.with_tax_price * order_detail.amount).floor.to_s(:delimited) %>円</td>
         </tr>
       <% end %>
     </tbody>
@@ -52,16 +52,16 @@
   <table class="table table-bordered" style="width: 300px;">
     <tr>
       <th style="padding-left: 5px;" class="table-light">商品合計</th>
-      <td style="padding-left: 5px;"><%= @order.total_payment - 800 %>円</td>
+      <td style="padding-left: 5px;"><%= @order.total_payment %>円</td>
     </tr>
       
     <tr>
       <th style="padding-left: 5px;" class="table-light">配送料</th>
-      <td style="padding-left: 5px;"><%= 800 %>円</td>
+      <td style="padding-left: 5px;"><%= @shipping_cost %>円</td>
     </tr>
       
     <tr>
       <th style="padding-left: 5px;" class="table-light">ご請求額</th>
-      <td style="padding-left: 5px;"><%= @order.total_payment %>円</td>
+      <td style="padding-left: 5px;"><%= @order.with_tax_total_payment + @shipping_cost %>円</td>
     </tr>
   </table>

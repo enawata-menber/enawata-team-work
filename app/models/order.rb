@@ -35,8 +35,12 @@ class Order < ApplicationRecord
     (price * 1.1).floor
   end
   
+  def with_tax_total_payment
+    (total_payment * 1.1).floor
+  end
+  
   ## 小計を求めるメソッド
-def subtotal
-    item.with_tax_price * amount
-end
+  def subtotal
+      item.with_tax_price * amount
+  end
 end

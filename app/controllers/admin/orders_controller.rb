@@ -6,6 +6,7 @@ class Admin::OrdersController < ApplicationController
     end
     
     def show
+        @shipping_cost = 800
         @order = Order.find(params[:id])
         @order_details = @order.order_details
     end

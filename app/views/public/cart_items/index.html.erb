@@ -63,7 +63,9 @@
   </div>
   <div class="row  mt-5 justify-content-center">
     <div class="col-xs-12 text-center">
-      <%= link_to '情報入力へ進む', new_public_order_path, class: 'btn btn-success' %>
+      <% if @cart_items.present? %>
+        <%= link_to '情報入力へ進む', new_public_order_path, class: 'btn btn-success' %>
+      <% end %>
     </div>
 <!--  </div>-->
 <!--</div>-->

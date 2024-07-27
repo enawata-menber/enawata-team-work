@@ -9,15 +9,20 @@ class Public::OrdersController < ApplicationController
   end
   
   def show
+    @shipping_cost = 800
     @order = Order.find(params[:id])
     @order_details = @order.order_details
     @genres = Genre.all # ジャンルの取得を追加
   end
   
   def new
+    if current_customer.cart_items.blank?
+      redirect_to public_cart_items_path
+    else
     @peyment_methods = ['クレジットカード', '銀行振込']
     @addresses = current_customer.addresses # 顧客の登録済み住所を取得
     @order = Order.new
+    end
   end
 
   def confirm
@@ -44,7 +49,7 @@ class Public::OrdersController < ApplicationController
           @order.postal_code = selected_address.postal_code
         else
           # 選択されたアドレスが見つからない場合の処理
-           flash[:alert] = "選択したアドレスが見つかりませんでした"
+          # flash[:alert] = "選択したアドレスが見つかりませんでした"
           render :new
           return
         end
@@ -70,7 +75,7 @@ class Public::OrdersController < ApplicationController
     @order.shipping_cost = 800
     @cart_items = current_customer.cart_items
     @total_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount }
-    @order.total_payment = @total_price +  @order.shipping_cost
+    @order.total_payment = @total_price + @order.shipping_cost
     p @order
     if @order.save
       current_customer.cart_items.each do |cart_item|
