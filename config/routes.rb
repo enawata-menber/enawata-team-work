@@ -26,6 +26,12 @@ Rails.application.routes.draw do
     # #public/customers
     get '/customers/my_page', to: 'customers#show', as: 'customer_my_page'
     get '/customers/information/edit', to: 'customers#edit', as: 'edit_customer_information'
+    resources :items, only: [:index, :show] do #ジャンル検索ルート追加
+     get 'items/search/:genre_id', to: 'items#search', as: 'search_public_items'
+     end
+    
+    
+    #public/customers
     patch '/customers/information', to: 'customers#update', as:  'update_customer_information'
     get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
     patch '/customers/withdraw',to: 'customers#withdraw', as: 'customer_withdraw'
@@ -50,13 +56,13 @@ Rails.application.routes.draw do
   #Admin routes
   #admin/sessions
     namespace :admin do
-    resource :session, only: [:new, :create, :destroy], controller: 'sessions' do
-      collection do
-        get 'sign_in', action: :new
-        post 'sign_in', action: :create
-        delete 'sign_out', action: :destroy
-      end
-    end
+    #resource :session, only: [:new, :create, :destroy], controller: 'sessions' do
+    #  collection do
+     #   get 'sign_in', action: :new
+    #    post 'sign_in', action: :create
+    #    delete 'sign_out', action: :destroy
+    #  end
+    #end
     #admin/homes
     root to: 'admin/homes#top'
     #admin/items
@@ -66,8 +72,11 @@ Rails.application.routes.draw do
     #admin/customers
     resources :customers, only: [:index, :show, :edit, :update]
     #admin/orders
-    resources :orders, only: [:show, :update]
+    resources :orders, only: [:show, :update, :index]
     #admin/order_details
     resources :order_details, only: [:update]
  end
+  # root設定を最上位に追加
+    root to: 'public/orders#new'
+    
 end

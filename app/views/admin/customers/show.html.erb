@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h4><%= @customer.full_name %>さんの会員情報</h4>
+            <h4><%= (@customer.last_name + @customer.first_name) %>さんの会員情報</h4>
             <table class="table">
                 <tr>
                     <th>会員ID</th>
@@ -13,7 +13,7 @@
                 </tr>
                 <tr>
                     <th>フリガナ</th>
-                    <td><%= @customer.kana_last_name %><%= @customer.kana_first_name %></td>
+                    <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
                 </tr>
                 <tr>
                     <th>郵便番号</th>
@@ -37,8 +37,8 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><%= link_to "編集する", edit_customer_path,class:"btn btn-success" %></td>
-                    <td><%= link_to "注文履歴一覧を見る",class:"btn btn-primary" %></td> <!--パス追加-->
+                    <td><%= link_to "編集する", edit_admin_customer_path, class:"btn btn-success" %></td>
+                    <td><%= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary" %></td> <!--パス追加-->
                 </tr>
             </table>
         </div>

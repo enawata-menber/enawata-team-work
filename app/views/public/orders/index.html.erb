@@ -1,24 +1,26 @@
-<h3 class="bg-secondary">注文履歴一覧</h3>
+<h3>注文履歴一覧</h3>
 
-<table>
+<table border="2" style="border-collapse: collapse">
   <tr>
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>注文商品</th>
-    <th>支払金額</th>
-    <th>注文ステータス</th>
-    <th>注文詳細</th>
+    <th style="width: 100px;">注文日</th>
+    <th style="width: 300px;">配送先</th>
+    <th style="width: 100px;">注文商品</th>
+    <th style="width: 100px;">支払金額</th>
+    <th style="width: 150px;">注文ステータス</th>
+    <th style="width: 100px;">注文詳細</th>
   </tr>
   <% @orders.each do |order| %>
     <tr>
-    <td>
-      <%= order.created_at.strftime('%Y/%m/%d') %>
-      <%= order.order_address %>
-      <%= order.order_details.item_id %>
-      <%= order.total_payments %>
-      <%= order.status %>
-      <%= link_to "表示する", public_order_path, class: "btn btn-primary" %>
-    </td>
+      <td style="width: 100px;"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+      <td style="width: 300px;"><%= order.order_address %></td>
+      <% order.order_details.each do |order_detail| %>
+        <td class="text-wrap" style="width: 100px;"><%= order_detail.item.name %></td>
+      <% end %>
+      <td style="width: 100px;"><%= order.total_payment %></td>
+      <td style="width: 100px;"><%= order.status %></td>
+      <td class="text-center">
+      <%= link_to "表示する", public_order_path(order), class: "btn btn-primary" %>
+      </td>
     </tr>
   <% end %>
 </table>

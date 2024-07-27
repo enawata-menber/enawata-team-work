@@ -6,11 +6,11 @@ class OrderDetail < ApplicationRecord
   
   #item_id,order_id,quantity,priceの欠損確認
   #priceはnumericalityで数値であるか検証、only_integerで整数のみに制限（ここでのpriceは購入価格）
-  validates :item_id, :order_id, :quantity,
+  validates :item_id, :order_id, :amount,
 			  		:price, presence: true
-	validates :price, :quantity, numericality: {only_integer: true}
+	validates :price, :amount, numericality: {only_integer: true}
   
-  #order_statusカラムに入る内容を記述
-  enum order_status: {"着手不可" => 0,"製作待ち" => 1,"制作中" => 2,"製作完了" => 3,}
+  #makings_statusカラムに入る内容を記述
+  enum makings_status: { not_started: 0, pending_production: 1,in_production: 2,completed: 3 }
 
 end
