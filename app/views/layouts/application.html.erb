@@ -25,7 +25,7 @@
            <div class="collapse navbar-collapse">
               <!--管理者ログイン中ヘッダー画面-->
               <ul class = "navbar-nav ml-auto">
-                <% if @header == 'admin' %>
+                <% if admin_signed_in? %>
                 <li class="nav-item"><%= link_to '商品一覧',admin_items_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3' %></li>
                 <li class="nav-item"><%= link_to '会員一覧',admin_customers_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
                 <li class="nav-item"><%= link_to '注文履歴一覧',admin_orders_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
@@ -34,7 +34,7 @@
                 
               
               <!--顧客ログイン中ヘッダー画面-->
-                <% elsif @header == 'public' %>
+                <% elsif customer_signed_in? %>
                 <li id="youkoso"  class="navbar-text">ようこそ、<%= current_customer.last_name %>さん！</li>
                 <li class="nav-item"><%= link_to 'マイページ',public_customer_my_page_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
                 <li class="nav-item"><%= link_to '商品一覧',public_items_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>

@@ -29,5 +29,12 @@ class Customer < ApplicationRecord
     first_name_kana + '' + last_name_kana
   end
   
- 
+  def customer_status #会員ステータス追加（おはる）is_activeでfalseに修正(ひで)
+    if is_active == false
+      "退会"
+    else
+      "有効"
+    end
+  end
+  
 end
