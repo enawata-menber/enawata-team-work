@@ -31,7 +31,7 @@
                 <%= select_tag 'amount', options_for_select((1..10).to_a), { prompt: '個数選択', class: 'form-control' } %>
               </div>
               <%= hidden_field_tag :item_id, @item.id %>
-              <%= submit_tag 'カートに入れる', class: 'btn btn-primary mb-2 ml-5' %> <!-- Bootstrapのクラスでマージンを調整 -->
+              <%= submit_tag 'カートに入れる', class: 'btn btn-success mb-2 ml-5' %> <!-- Bootstrapのクラスでマージンを調整 -->
             <% end %>
           <% else %>
             <p class="text-danger">この商品は現在、購入できません。</p>

@@ -21,6 +21,14 @@ class Order < ApplicationRecord
   def order_address
     "#{self.postal_code} #{self.address} #{self.name}"
   end
+  # 住所と名前を分けました
+  def postal_code_address_part
+    "#{self.postal_code} #{self.address}"
+  end
+
+  def name_part
+    self.name
+  end
   
   # 消費税を求めるメソッド
   def with_tax_price

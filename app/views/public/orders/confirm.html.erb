@@ -1,7 +1,12 @@
-<div class="container">
-  <h2>注文情報確認</h2>
-  <table>
-    <thead>
+<p id='notice'></p>
+
+   <!--<div class='row'>-->
+   <!-- <div class='col-xs-10'>-->
+  <h2 class="cart-header bg-light  d-inline-block p-2">注文情報確認</h2>
+   <div class='row'>
+      <div class="col-md-9">
+  <table class='table table-hover table-inverse table-bordered black-border-table'>
+    <thead ="thead-gray">
       <tr class="table-active">
         <th scope="col">商品名</th>
         <th scope="col">単価(税込)</th>
@@ -23,24 +28,45 @@
       <% end %>
     </tbody>
   </table>
+</div>
 
-  <table class="table col-2 border border-2 mt-2">
-    <tr><th bgcolor="#ffefd5">送料</th><td><%= number_to_currency(@shipping_cost, unit: '', precision: 0) %></td></tr>
-    <tr><th bgcolor="#ffefd5">商品合計</th><td><%= number_to_currency(@total_price,unit: '', precision: 0) %></td></tr>
-    <tr><th bgcolor="#ffefd5">請求金額</th><td><%= number_to_currency(@order.total_payment, unit: '', precision: 0) %></td></tr>
+  <div class="col-md-3">
+  <table class="table table-bordered black-border-table",style="display: inline-block;">
+    <tr>
+      <th bgcolor="#dee2e6">送料</th>
+      <td ><%= number_to_currency(@shipping_cost, unit: '', precision: 0) %></td>
+    </tr>
+    <tr>
+      <th  bgcolor="#dee2e6">商品合計</th>
+      <td ><%= number_to_currency(@total_price,unit: '', precision: 0) %></td>
+    </tr>
+    <tr>
+      <th  bgcolor="#dee2e6">請求金額</th>
+      <td ><%= number_to_currency(@order.total_payment, unit: '', precision: 0) %></td>
+    </tr>
   </table>
- <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
-  <h2>支払方法</h2>
-    <p><%= @order.peyment_method %></p>
-
-  <h2>お届け先</h2>
-  <p><%= @order.order_address %></p>
-
+   </div>
+   </div>
+ 
+ <%= form_with model: @order, url: public_orders_path, method: :post do |f|%>
+  <div class="d-flex align-items-center mt-3">
+  <h3 lass="mb-0">支払方法</h3>
+    <p class="ml-5 mb-0"><%= @order.peyment_method %></p>
+</div>
+ <div class="d-flex align-items-center mt-3">
+  <h3 lass="mb-0">お届け先</h3>
+    <div class="ml-4">
+      <p  class="ml-4 mb-0">〒<%= @order.postal_code_address_part %></p>
+      <p  class="ml-4 mb-0"><%= @order.name_part %></p>
+  　</div>
+</div>
     <%= f.hidden_field :peyment_method, value: @order.peyment_method %>
     <%= f.hidden_field :address, value: @order.address %>
     <%= f.hidden_field :name, value: @order.name %>
     <%= f.hidden_field :postal_code, value: @order.postal_code %>
-  
+ <div class="d-flex justify-content-center mt-4">
     <%= f.submit '注文を確定する', class: 'btn btn-success' %>
+</div>    
   <% end %>
-</div>
+<!--</div>-->
+<!--</div>-->
