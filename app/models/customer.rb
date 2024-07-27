@@ -37,8 +37,4 @@ class Customer < ApplicationRecord
     end
   end
   
-  #ユーザーがacitveの場合はtrueを返す
-  def active_for_authentication?
-    super && (self.is_active == true)
-  end
 end

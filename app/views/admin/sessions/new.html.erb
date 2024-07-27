@@ -1,9 +1,8 @@
-<h3>管理者ログイン</h3>
-
+<h4><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">管理者ログイン</span></h4>
 <!--h4 class="bg-secondary">会員の方はこちらからログイン</h4-->
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <div class="row mb-1">
+    <div class="row mb-1 mt-5">
       <label for="email" class="col-sm-2 col-form-label col-form-label-sm">メールアドレス</label>
       <div class="col-sm-2">
         <%= f.email_field :email, autofocus: true, class: "form-control form-control-sm" %>

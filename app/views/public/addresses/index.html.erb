@@ -1,9 +1,9 @@
-<h3>配送先登録/一覧</h3>
+<h4 style="margin-top: 30px;"><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">配送先登録/一覧</span></h4>
 <%= render 'layouts/errors', obj: @address %>
 
   <%= form_with model: @address, url: public_addresses_path do |f| %> 
-    <div class="row mb-1">
-      <label for="email" class="col-sm-2 col-form-label col-form-label-sm">郵便番号(ハイフンなし)</label>
+    <div class="row mb-1 mt-4">
+      <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>郵便番号(ハイフンなし)</strong></label>
       <div class="col-sm-2">
         <%= f.text_field :postal_code, autofocus: true, class: "form-control form-control-sm" %>
       </div>
@@ -11,14 +11,14 @@
       
       
     <div class="row mb-1">
-      <label for="email" class="col-sm-2 col-form-label col-form-label-sm">住所</label>
+      <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>住所</strong></label>
       <div class="col-sm-2">
         <%= f.text_field :address, autofocus: true, class: "form-control form-control-sm" %>
       </div>
     </div>
       
     <div class="row mb-1">
-      <label for="email" class="col-sm-2 col-form-label col-form-label-sm">宛名</label>
+      <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>宛名</strong></label>
       <div class="col-sm-2">
         <%= f.text_field :name, autofocus: true, class: "form-control form-control-sm" %>
       </div>
@@ -34,20 +34,20 @@
   <br>
   <br>
   
-  <table border="2" style="border-collapse: collapse">
-  <tr>
-    <th style="width: 100px;">郵便番号</th>
-    <th style="width: 300px;">住所</th>
-    <th style="width: 200px;">宛名</th>
-    <th></th>
+  <table class="table table-bordered table-hover">
+   <tr>
+    <th style="width: 50px;" class="table-light">郵便番号</th>
+    <th style="width: 200px;" class="table-light">住所</th>
+    <th style="width: 150px;" class="table-light">宛名</th>
+    <th style="width: 150px;" class="table-light"></th></th>
   </tr>
   <% @addresses.each do |address| %>
   <tr>
-    <td style="width: 100px;"><%= address.postal_code %></td>
-    <td style="width: 300px;"><%= address.address %></td>
-    <td style="width: 200px;"><%= address.name %></td>
-    <td class="text-center">
-      <%= link_to "編集する", edit_public_address_path(address), class: "btn btn-success" %>
+    <td><%= address.postal_code %></td>
+    <td><%= address.address %></td>
+    <td><%= address.name %></td>
+    <td class="d-flex justify-content-center">
+      <%= link_to "編集する", edit_public_address_path(address), class: "btn btn-success  mr-2" %>
       <%= link_to "削除する", public_address_path(address), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
     </td>
   </tr>

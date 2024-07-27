@@ -1,5 +1,4 @@
 <script src="https://kit.fontawesome.com/fff1710ae4.js" crossorigin="anonymous"></script>
-<div class="container">
   <div class="row align-items-center">
     <div class="col-auto">
       <h4 style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">商品一覧</h4>
@@ -13,35 +12,34 @@
 
   <div class="row">
     <div class="col-12">
-        <table class="table table-borderless table-light">
-            <tr>
-              <th>商品ID</th>
-              <th>商品名</th>
-              <th>税抜価格</th>
-              <th>ジャンル</th>
-              <th>ステータス</th>
-            </tr>
-          <tbody>
-            <% @items.each do |item| %>
-              <tr>
-                <td><%= item.id %></td>
-                <td><%= link_to item.name, admin_item_path(item) %></td>
-                <td><%= item.price.to_s(:delimited) %></td>
-                <td><%= item.genre.name %></td>
-                <td>
-                  <% if item.is_active %>
-                    <span class="text-success font-weight-bold">販売中</span>
-                  <% else %>
-                    <span class="text-secondary font-weight-bold">販売停止中</span>
-                  <% end %>
-                </td>
-              </tr>
+      <table class="table table-borderless table-light">
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+        <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item) %></td>
+            <td><%= item.price.to_s(:delimited) %></td>
+            <td><%= item.genre.name %></td>
+            <td>
+            <% if item.is_active %>
+              <span class="text-success font-weight-bold">販売中</span>
+            <% else %>
+              <span class="text-secondary font-weight-bold">販売停止中</span>
             <% end %>
-          </tbody>
-        </table>
-<div class="pagination justify-content-center">
-  <%= paginate @items, outer_window: 1, inner_window: 1, class: "pagination-lg" %>
-</div>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="pagination justify-content-center">
+        <%= paginate @items, outer_window: 1, inner_window: 1, class: "pagination-lg" %>
+      </div>
     </div>
   </div>
-</div>

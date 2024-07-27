@@ -1,8 +1,8 @@
 class Public::OrdersController < ApplicationController
-  before_action :set_devise_mapping, except: [:thanks] # Deviseに対して現在のリクエストがどのモデル（ここではcustomer）にマッピングされているかを手動で設定
+  #before_action :set_devise_mapping, except: [:thanks] # Deviseに対して現在のリクエストがどのモデル（ここではcustomer）にマッピングされているかを手動で設定
   before_action :authenticate_customer!
-  before_action :request_post?, only: [:confirm]
-  before_action :order_new?, only: [:new]
+  #before_action :request_post?, only: [:confirm]
+  #before_action :order_new?, only: [:new]
 
   def index
     @orders = current_customer.orders
@@ -20,42 +20,49 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
-def confirm
-  @order = Order.new(order_params.except(:address_option,:selected_address_id))
-  @cart_items = current_customer.cart_items
-  @shipping_cost = calculate_shipping_cost(@order.address)
-  @total_price = @cart_items.sum { |item| item.subtotal }
-  @order.total_payment = @total_price + @shipping_cost
-  @addresses = current_customer.addresses
-  
-  address_option = params[:order][:address_option]
-  case address_option
-  when 'self'
-    @order.name = current_customer.full_name
-    @order.address = current_customer.address
-    @order.postal_code = current_customer.postal_code
-  when 'select'
-    # @peyment_methods = ['クレジットカード', '銀行振込']
-    if params[:order][:selected_address_id].present?
-      selected_address = current_customer.addresses.find_by(id: params[:order][:selected_address_id])
-      if selected_address
-        @order.name = selected_address.name
-        @order.address = selected_address.address
-        @order.postal_code = selected_address.postal_code
+  def confirm
+    @order = Order.new(order_params.except(:address_option,:selected_address_id))
+    @cart_items = current_customer.cart_items
+    @shipping_cost = 800 #変更
+    @total_price = @cart_items.sum { |item| item.subtotal }
+    @order.total_payment = @total_price + @shipping_cost
+    @addresses = current_customer.addresses
+    
+    address_option = params[:order][:address_option]
+    case address_option
+    when 'self'
+      @order.name = current_customer.full_name
+      @order.address = current_customer.address
+      @order.postal_code = current_customer.postal_code
+    when 'select'
+      # @peyment_methods = ['クレジットカード', '銀行振込']
+        params[:order][:selected_address_id].present?
+        selected_address = current_customer.addresses.find_by(id: params[:order][:selected_address_id])
+        if selected_address
+          @order.name = selected_address.name
+          @order.address = selected_address.address
+          @order.postal_code = selected_address.postal_code
+        else
+          # 選択されたアドレスが見つからない場合の処理
+           flash[:alert] = "選択したアドレスが見つかりませんでした"
+          render :new
+          return
+        end
+    
+    when 'new'
+      if params[:order][:postal_code].blank? || params[:order][:address].blank? || params[:order][:name].blank?
+         flash[:alert] = '住所を入力してください。'
+         render :new
+         return
       else
-        # 選択されたアドレスが見つからない場合の処理
-         flash[:alert] = "選択したアドレスが見つかりませんでした"
-        render :new
-        return
+        @order.postal_code = params[:order][:postal_code]
+         @order.address = params[:order][:address]
+         @order.name = params[:order][:name]
+        
       end
-    else
-      # アドレスが選択されていない場合の処理
-      flash[:alert] = "アドレスを選択してください"
-      render :new
-      return
     end
   end
-end
+
 
   def create
     @order = Order.new(order_params.except(:address_option))
@@ -76,6 +83,7 @@ end
       current_customer.cart_items.destroy_all
       redirect_to thanks_public_orders_path, notice: '注文が完了しました。'
     else
+      flash[:alert] = '支払い方法を選択してください'
       render :confirm
     end
   end
@@ -135,9 +143,9 @@ end
   end
 
   # 指定された住所IDに基づいて送料を計算
-  def calculate_shipping_cost(address)
-    # ここで address を使用して送料を計算するロジックを追加
-    # 一律800円とする場合
-    800
-  end
+  # def calculate_shipping_cost(address)
+  #   # ここで address を使用して送料を計算するロジックを追加
+  #   # 一律800円とする場合
+  #   800
+  # end
 end
