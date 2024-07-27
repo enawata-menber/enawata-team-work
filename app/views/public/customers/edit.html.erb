@@ -1,9 +1,9 @@
-<h3 class="mx-1 my-4">登録情報</h3>
+<h4 style="margin-top: 30px;"><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">登録情報</span></h4>
 
 <%= render 'layouts/errors', obj: @customer %>
 
 <%= form_with model: @customer, url: public_update_customer_information_path do |f| %>
-<div class="row mb-1">
+<div class="row mb-1 mt-4">
   <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>名前</strong></label>
     <div class="col-sm-4">
       <div class="d-flex align-items-center">

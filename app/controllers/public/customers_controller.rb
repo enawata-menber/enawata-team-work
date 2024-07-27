@@ -27,9 +27,9 @@ class Public::CustomersController < ApplicationController
   def withdraw
     @customer = current_customer
     @customer.update(is_active: false)
-    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
     redirect_to public_root_path
-    
   end
   
   

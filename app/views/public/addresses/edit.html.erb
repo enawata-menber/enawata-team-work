@@ -1,8 +1,8 @@
-<h3 class="mx-1 my-4">配送先編集</h3>
+<h4 style="margin-top: 30px;"><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">配送先編集</span></h4>
 <%= render 'layouts/errors', obj: @address %>
 
     <%= form_with model: @address, url: public_address_path, local: true  ,method: :patch do |f| %> 
-      <div class="row mb-1">
+      <div class="row mb-1 mt-4">
         <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><strong>郵便番号(ハイフンなし)</strong></label>
         <div class="col-sm-2">
           <%= f.text_field :postal_code, autofocus: true, class: "form-control form-control-sm" %>

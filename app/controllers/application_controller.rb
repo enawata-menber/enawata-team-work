@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
 
   private
-
+  
   def set_header
     if admin_signed_in?
       @header = 'admin'

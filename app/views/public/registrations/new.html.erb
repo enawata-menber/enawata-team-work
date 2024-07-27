@@ -1,8 +1,8 @@
-<h3>新規会員登録</h3>
+<h4 style="margin-top: 40px;"><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">新規会員登録</span></h4>
 
 <%= form_with model: @customer, url:  customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
-    <div class="row mb-1">
+    <div class="row mb-1 mt-5">
       <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">名前</label>
       <div class="col-sm-6">
         <div class="d-flex align-items-center">
@@ -71,5 +71,5 @@
     </div>
 <% end %>
 
-<h3>既に登録済みの方</h3>
+<h4 style="margin-top: 40px;"><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">既に登録済みの方</span></h4>
 <%= link_to "こちら", new_customer_session_path %>からログインしてください
