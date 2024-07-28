@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   #アソシエーション
   belongs_to :customer
   has_many :order_details, dependent: :destroy
-  # has_many :items, through: :order_details
+  has_many :items, through: :order_details
   
   #customer_id,address,name,shipping_cost,total_price,payment_method,の欠損確認
   #postal_codeは7文字に指定、numericalityで数値であるか検証、only_integerで整数のみに制限
@@ -35,8 +35,14 @@ class Order < ApplicationRecord
     (price * 1.1).floor
   end
   
+  def with_tax_total_payment
+    (total_payment * 1.1).floor
+  end
+  
+  
   ## 小計を求めるメソッド
-def subtotal
-    item.with_tax_price * amount
-end
+  def subtotal
+      item.with_tax_price * amount
+  end
+  
 end

@@ -21,6 +21,7 @@ class Item < ApplicationRecord
     (price * 1.1).floor
   end
   
+  
   # genre_id, name, priceの欠損確認
   # priceはnumericalityで数値であるか検証、only_integerで整数のみに制限（ここでのpriceは税抜き価格）
   validates :genre_id, :name, :price, presence: true
