@@ -17,7 +17,7 @@ validates :name, presence: true
   
   #注文情報で住所と宛名を結合した文字列を返すようにする
   def full_address_with_name
-    "#{address} (#{name})"
+    "〒#{postal_code} #{address} #{name}"
   end
   # #送料を住所で変更する
   # # 都道府県のリスト

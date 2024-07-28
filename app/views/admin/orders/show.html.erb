@@ -76,17 +76,17 @@
     <div class="col-md-4 pl-3">
       <div>
          <p><strong>商品合計</strong>
-         <%= @order.with_tax_total_payment %> 円
+         <%= @order.total_payment - @shipping_cost %> 円
          </p>
       </div>
       <div>
          <p><strong>送料</strong>
-         <%= 800 %>円
+         <%= @shipping_cost %>円
          </p>
       </div>
       <div>
        <p><strong>請求金額合計</strong>
-       <span class="text-dark font-weight-bold"><%= @order.with_tax_total_payment + @shipping_cost %> 円</span></p>
+       <span class="text-dark font-weight-bold"><%= @order.total_payment %>円</span></p>
        </p>
       </div>
     </div>

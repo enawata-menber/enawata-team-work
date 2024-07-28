@@ -52,7 +52,7 @@
   <table class="table table-bordered" style="width: 300px;">
     <tr>
       <th style="padding-left: 5px;" class="table-light">商品合計</th>
-      <td style="padding-left: 5px;"><%= @order.total_payment %>円</td>
+      <td style="padding-left: 5px;"><%= @order.total_payment - @shipping_cost %>円</td>
     </tr>
       
     <tr>
@@ -62,6 +62,6 @@
       
     <tr>
       <th style="padding-left: 5px;" class="table-light">ご請求額</th>
-      <td style="padding-left: 5px;"><%= @order.with_tax_total_payment + @shipping_cost %>円</td>
+      <td style="padding-left: 5px;"><%= @order.total_payment %>円</td>
     </tr>
   </table>

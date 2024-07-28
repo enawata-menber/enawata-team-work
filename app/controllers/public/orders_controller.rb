@@ -75,7 +75,8 @@ class Public::OrdersController < ApplicationController
     @order.shipping_cost = 800
     @cart_items = current_customer.cart_items
     @total_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount }
-    @order.total_payment = @total_price + @order.shipping_cost
+     #@order.total_payment = @total_price + @order.shipping_cost
+    @order.total_payment = @cart_items.sum(&:subtotal) + @order.shipping_cost
     p @order
     if @order.save
       current_customer.cart_items.each do |cart_item|

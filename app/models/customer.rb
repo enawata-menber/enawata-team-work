@@ -22,11 +22,11 @@ class Customer < ApplicationRecord
   format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
     
   def full_name #フルネーム表示のため追加（おはる）
-    first_name + '' + last_name
+    last_name + '' + first_name
   end
   
   def full_name_kana #かなフルネーム表示のため追加（おはる）kanaの位置を修正(ひで)
-    first_name_kana + '' + last_name_kana
+    last_name_kana + '' + first_name_kana
   end
   
   def customer_status #会員ステータス追加（おはる）is_activeでfalseに修正(ひで)
