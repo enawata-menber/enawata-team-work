@@ -1,16 +1,18 @@
-<div class="container takasa">
-  <div class="container takasa">
-  <div class="row">
-    <div class="col-xs-7">
-      <h2><i class="fas fa-pen"></i>注文情報入力</h2>
+<!--<div class="container takasa">-->
+  <!--<div class="justify-content-center">-->
+  <!--<div class="row">-->
+    <div class="col-xs-10 mt-5 ">
+      <h2 class="bg-light  d-inline-block p-2">注文情報入力</h2>
       <p><%= notice %></p>
       <%= form_with(model: @order, local: true, url: confirm_public_orders_path, method: :post) do |f| %>
         <div>
-          <%= f.label :peyment_method, "支払い方法" %><br>
+          <%= f.label :peyment_method, "支払い方法", class: 'font-weight-bold'  %><br>
           <% if @peyment_methods.present? %>
             <% @peyment_methods.each do |method| %>
+            <div class="form-check">
               <%= f.radio_button :peyment_method, method %>
               <%= f.label :peyment_method, method %><br>
+              </div>
             <% end %>
           <% else %>
             <p>支払い方法がありません</p>
@@ -18,43 +20,70 @@
         </div>
         
         <div>
-          <%= f.label :shipping_address, "お届け先" %><br>
-          <%= f.radio_button :address_option, 'self', checked: true %>
-          <%= f.label :address_option, 'ご自身の住所' %><br>
-        </div>
-        <div>
-          <%= current_customer.address %><br>
-          <%= current_customer.last_name %> <%= current_customer.first_name %>
-        </div>
-        
-        <%= f.radio_button :address_option, 'select' %>
-        <%= f.label :address_option, '登録済住所から選択' %><br>
-        <div>
-          <% if @addresses.present? %>
-            <%= f.collection_select :selected_address_id, @addresses, :id, :full_address_with_name, { prompt: '選択してください' }, { class: 'form-control' } %><br>
-          <% else %>
-            <p>登録済住所がありません</p>
-          <% end %>
-        </div>
-        
-        <%= f.radio_button :address_option, 'new' %>
-        <%= f.label :address_option, '新しいお届け先' %><br>
-        
-        <div>
-          <%= f.label :new_postal_code, '郵便番号(ハイフンなし)' %>
-          <%= f.text_field :new_postal_code, placeholder: '0000000' %><br>
-        
-          <%= f.label :new_address, '住所' %>
-          <%= f.text_field :new_address, placeholder: '東京都渋谷区代々木神園町0-0' %><br>
-        
-          <%= f.label :new_name, '宛名' %>
-          <%= f.text_field :new_name, placeholder: '令和道子' %><br>
-        </div>
-        
-        <div>
-          <%= f.submit "確認画面へ進む", class: 'btn btn-primary' %>
-        </div>
+  <%= f.label :shipping_address, "お届け先" , class: 'font-weight-bold' %><br>
+  <div class="form-check">
+    <%= f.radio_button :address_option, 'self', checked: true, class: 'form-check-input' %>
+    <%= f.label :address_option, 'ご自身の住所', class: 'form-check-label' %><br>
+    <div class="address-details">
+      <div>
+        <%= current_customer.address %><br>
+        <%= current_customer.last_name %><%= current_customer.first_name %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-check">
+    <%= f.radio_button :address_option, 'select', class: 'form-check-input' %>
+    <%= f.label :address_option, '登録済住所から選択', class: 'form-check-label' %><br>
+    <div class="address-details">
+      <% if @addresses.present? %>
+        <%= f.collection_select :selected_address_id, @addresses, :id, :full_address_with_name, { prompt: '選択してください' }, { class: 'form-control' } %><br>
+      <% else %>
+        <p>登録済住所がありません</p>
       <% end %>
     </div>
   </div>
+  
+  <div class="form-check">
+    <%= f.radio_button :address_option, 'new', class: 'form-check-input' %>
+    <%= f.label :address_option, '新しいお届け先', class: 'form-check-label' %><br>
+    <div class="address-details">
+  <div class="form-group row">
+    <div class="col-xs-4">
+      <%= f.label :postal_code, '郵便番号(ハイフンなし)', class: 'col-form-label' %>
+    </div>
+    <div class="col-xs-8">
+      <%= f.text_field :postal_code, placeholder: '0000000', class: 'form-control  ml-postal-code' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-4">
+      <%= f.label :address, '住所', class: 'col-form-label' %>
+    </div>
+    <div class="col-8">
+      <%= f.text_field :address, placeholder: '東京都渋谷区代々木神園町0-0', class: 'form-control ml-address long-text-field' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-4">
+      <%= f.label :name, '宛名', class: 'col-form-label' %>
+    </div>
+    <div class="col-8">
+      <%= f.text_field :name, placeholder: '令和道子', class: 'form-control ml-name' %>
+    </div>
+  </div>
 </div>
+  </div>
+</div>
+
+        <div class="d-flex justify-content-center">
+        <!--  <div class="col-2 offset-11">-->
+          <%= f.submit "確認画面へ進む", class: 'btn btn-primary' %>
+        <!--  </div>-->
+        </div>
+      <% end %>
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

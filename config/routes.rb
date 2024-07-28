@@ -30,13 +30,7 @@ Rails.application.routes.draw do
      get 'items/search/:genre_id', to: 'items#search', as: 'search_public_items'
      end
     
-    #public/registrations
-    get '/customers/sign_up', to: 'registrations#new'
-    post '/customers', to: 'registrations#create'
-    #public/sessions
-    get '/customers/sign_in', to: 'sessions#new',as: 'new_customer_session'
-    post '/customers/sign_in', to: 'sessions#create',as: 'customer_session'
-    delete '/customers/sign_out',to: 'sessions#destroy',as: 'destroy_customer_session'
+    
     #public/customers
     patch '/customers/information', to: 'customers#update', as:  'update_customer_information'
     get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
@@ -62,13 +56,13 @@ Rails.application.routes.draw do
   #Admin routes
   #admin/sessions
     namespace :admin do
-    resource :session, only: [:new, :create, :destroy], controller: 'sessions' do
-      collection do
-        get 'sign_in', action: :new
-        post 'sign_in', action: :create
-        delete 'sign_out', action: :destroy
-      end
-    end
+    #resource :session, only: [:new, :create, :destroy], controller: 'sessions' do
+    #  collection do
+     #   get 'sign_in', action: :new
+    #    post 'sign_in', action: :create
+    #    delete 'sign_out', action: :destroy
+    #  end
+    #end
     #admin/homes
     root to: 'admin/homes#top'
     #admin/items
@@ -78,7 +72,7 @@ Rails.application.routes.draw do
     #admin/customers
     resources :customers, only: [:index, :show, :edit, :update]
     #admin/orders
-    resources :orders, only: [:show, :update]
+    resources :orders, only: [:show, :update, :index]
     #admin/order_details
     resources :order_details, only: [:update]
  end

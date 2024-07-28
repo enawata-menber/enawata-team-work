@@ -13,32 +13,28 @@ class Customer < ApplicationRecord
   #郵便番号を7桁に指定、numericalityで数値であるか検証、only_integerで整数のみに制限
   #電話番号はnumericalityで数値であるか検証、only_integerで整数のみに制限
   #カタカナのみの入力に制限
-  validates :first_name, :last_name,
+  validates :last_name, :first_name, 
             :postal_code, :telephone_number,
             presence: true
   validates :postal_code, length: {is: 7}, numericality: {only_integer: true}
   validates :telephone_number, numericality: {only_integer: true}
   validates :first_name_kana, :last_name_kana,
-  format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: "カタカナで入力して下さい。"}
+  format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
     
   def full_name #フルネーム表示のため追加（おはる）
-    first_name + '' + last_name
+    last_name + '' + first_name
   end
   
-  def full_name_kana #かなフルネーム表示のため追加（おはる）
-    kana_first_name + '' + kana_last_name
+  def full_name_kana #かなフルネーム表示のため追加（おはる）kanaの位置を修正(ひで)
+    last_name_kana + '' + first_name_kana
   end
   
-  def customer_status #会員ステータス追加（おはる）
-    if is_deleted == true
+  def customer_status #会員ステータス追加（おはる）is_activeでfalseに修正(ひで)
+    if is_active == false
       "退会"
     else
       "有効"
     end
   end
   
-  #ユーザーがacitveの場合はtrueを返す
-  def active_for_authentication?
-    super && (self.is_active == true)
-  end
 end

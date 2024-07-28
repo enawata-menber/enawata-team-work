@@ -1,9 +1,9 @@
-<h3>ログイン</h3>
+<h4 style="margin-top: 50px;"><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">ログイン</span></h4>
 
 <h4>会員の方はこちらからログイン</h4>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <div class="row mb-1">
+    <div class="row mb-1 mt-6">
       <label for="email" class="col-sm-2 col-form-label col-form-label-sm">メールアドレス</label>
       <div class="col-sm-2">
         <%= f.email_field :email, autofocus: true, class: "form-control form-control-sm" %>
@@ -19,11 +19,11 @@
   
     <div class="row mb-1">
       <div class="col-sm-2 offset-sm-2">
-        <%= f.submit "新規登録", class: 'btn btn-success' %>
+        <%= f.submit "ログイン", class: 'btn btn-success btn-sm' %>
       </div>
     </div>
 <% end %>
-  
-<h4>会員登録がお済でない方</h4>
+
+<h4 style="margin-top: 40px;"><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">会員登録がお済でない方</span></h4>
 <%= link_to "こちら",   new_customer_registration_path %>から新規登録を行ってしてください
 

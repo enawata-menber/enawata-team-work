@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
   
   def show
     @customer = current_customer
@@ -10,10 +11,12 @@ class Public::CustomersController < ApplicationController
   
   def update
     @customer = current_customer
-    if @customer.update(customer_params)
-       redirect_to public_customer_my_page_path
+    if@customer.update(customer_params)
+      flash[:notice] = "変更内容を登録しました"
+      redirect_to public_customer_my_page_path
     else
-       render :edit
+       @customer = current_customer
+      render :edit
     end
   end
   
@@ -24,8 +27,9 @@ class Public::CustomersController < ApplicationController
   def withdraw
     @customer = current_customer
     @customer.update(is_active: false)
-      redirect_to root_path
-      
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました。またのご利用をお待ちしております。"
+    redirect_to public_root_path
   end
   
   

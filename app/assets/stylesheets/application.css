@@ -68,3 +68,38 @@
 #youkoso {
    color: white;
 }
+/*ショッピングカート*/
+.cart-header {
+  margin-bottom: 20px; /* 必要に応じて調整 */
+  margin-right:660px;
+}
+
+.thead-gray {
+  background-color: #f8f9fa; /* グレーの背景色 */
+}
+/*注文情報入力*/
+.address-details {
+  margin-left: 20px; /* 必要に応じて調整 */
+}
+
+.ml-postal-code {
+  margin-left: 30px; /* 郵便番号のテキストフィールドの左マージン */
+}
+
+.ml-address {
+  margin-left: 150px; /* 住所のテキストフィールドの左マージン */
+}
+
+.ml-name {
+  margin-left: 150px; /* 宛名のテキストフィールドの左マージン */
+}
+
+.long-text-field {
+  width: 100%; /* 住所のテキストフィールドを長くする */
+}
+/*注文確認*/
+.black-border-table,
+.black-border-table th,
+.black-border-table td {
+  border: 1px solid black !important; /* 黒い枠線を適用 */
+}

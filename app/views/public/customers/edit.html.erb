@@ -1,19 +1,10 @@
-<h3>会員情報編集</h3>
+<h4 style="margin-top: 30px;"><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">登録情報</span></h4>
+
+<%= render 'layouts/errors', obj: @customer %>
 
 <%= form_with model: @customer, url: public_update_customer_information_path do |f| %>
-  
-<div class="row mb-1">
-  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">フリガナ</label>
-    <div class="col-sm-4">
-      <div class="d-flex align-items-center">
-        <%= f.text_field :last_name_kana, value: @customer.last_name_kana, autofocus: true, class: "form-control form-control-sm mr-3", placeholder: "セイ" %>
-        <%= f.text_field :first_name_kana, value: @customer.first_name_kana, autofocus: true, class: "form-control form-control-sm", placeholder: "メイ" %>
-      </div>
-    </div>
-</div>
-      
-<div class="row mb-1">
-  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">フリガナ</label>
+<div class="row mb-1 mt-4">
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>名前</strong></label>
     <div class="col-sm-4">
       <div class="d-flex align-items-center">
         <%= f.text_field :last_name, value: @customer.last_name, autofocus: true, class: "form-control form-control-sm mr-3", placeholder: "姓" %>
@@ -21,9 +12,19 @@
       </div>
     </div>
 </div>
+      
+<div class="row mb-1">
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>フリガナ</strong></label>
+    <div class="col-sm-4">
+      <div class="d-flex align-items-center">
+        <%= f.text_field :last_name_kana, value: @customer.last_name_kana, autofocus: true, class: "form-control form-control-sm mr-3", placeholder: "セイ" %>
+        <%= f.text_field :first_name_kana, value: @customer.first_name_kana, autofocus: true, class: "form-control form-control-sm", placeholder: "メイ" %>
+      </div>
+    </div>
+</div>
 
 <div class="row mb-1">
-  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">郵便番号</label>
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>郵便番号</strong></label>
     <div class="col-sm-4">
       <div class="d-flex align-items-center">
         <%= f.text_field :postal_code, value: @customer.postal_code, autofocus: true, class: "form-control form-control-sm mr-3" %>
@@ -32,7 +33,7 @@
 </div>
 
 <div class="row mb-1">
-  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">住所</label>
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>住所</strong></label>
     <div class="col-sm-4">
       <div class="d-flex align-items-center">
         <%= f.text_field :address, value: @customer.address, autofocus: true, class: "form-control form-control-sm mr-3" %>
@@ -41,7 +42,7 @@
 </div>
 
 <div class="row mb-1">
-  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">電話番号</label>
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>電話番号</strong></label>
     <div class="col-sm-4">
       <div class="d-flex align-items-center">
         <%= f.text_field :telephone_number, value: @customer.telephone_number, autofocus: true, class: "form-control form-control-sm mr-3" %>
@@ -50,7 +51,7 @@
 </div>
 
 <div class="row mb-1">
-  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">メールアドレス</label>
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>メールアドレス</strong></label>
     <div class="col-sm-4">
       <div class="d-flex align-items-center">
         <%= f.email_field :email, value: @customer.email, autofocus: true, class: "form-control form-control-sm mr-3" %>

@@ -10,7 +10,14 @@ class OrderDetail < ApplicationRecord
 			  		:price, presence: true
 	validates :price, :amount, numericality: {only_integer: true}
   
-  #order_statusカラムに入る内容を記述
-  enum order_status: {"着手不可" => 0,"製作待ち" => 1,"制作中" => 2,"製作完了" => 3,}
+  #makings_statusカラムに入る内容を記述
+  enum makings_status: { not_started: 0, pending_production: 1,in_production: 2,completed: 3 }
+  
+  def with_tax_price
+    (price * 1.1).floor
+  end
 
+  def with_tax_total_payment
+    (total_payment * 1.1).floor
+  end
 end

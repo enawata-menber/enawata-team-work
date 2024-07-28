@@ -16,14 +16,20 @@ class Public::AddressesController < ApplicationController
     if @address.save
       flash[:notice] = "新規配送先を登録しました"
       redirect_to public_addresses_path
+    else
+      @addresses = current_customer.addresses
+      render :index
     end
   end
   
   def update
-    address = Address.find(params[:id])
-    address.update(address_params)
-    flash[:success] = "変更内容を登録しました"
-    redirect_to public_addresses_path
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+       flash[:success] = "変更内容を登録しました"
+       redirect_to public_addresses_path
+    else
+       render :edit
+    end
   end
   
   def destroy

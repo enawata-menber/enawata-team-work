@@ -1,73 +1,68 @@
-<h3>マイページ</h3>
-
-　<table>
-　  <tr>
-      <th>登録情報</th>
-      <td>
-        <%= link_to "編集する",   public_edit_customer_information_path(@customer), class: "btn btn-success" %>
-      </td>
-    </tr>
-  </table>
-    <br>
-  <table border="2" style="border-collapse: collapse">
-    <tr>
-      <th>氏名</th>
-      <td width="300">
-        <%= "#{@customer.last_name} #{@customer.first_name}" %>
-      </td>
-    </tr>
+<div class="row">
+  <div class="col">
+      <h4 style="margin-top: 30px;"><span style="background-color: #f8f9fa; padding: 0.25rem 0.75rem;">マイページ</span></h4>
+        <div class="d-flex align-items-center">
+          <h5 class="mx-2 my-3 mt-4"><b>登録情報</h5>
+            <%= link_to "編集する", public_edit_customer_information_path(@customer), class:"btn btn-success ml-2" %>
+        </div>
+            <table class="table table-striped-columns">
+              <tr>
+                <th class="table-light">氏名</th>
+                <td>
+                  <%= "#{@customer.last_name} #{@customer.first_name} "%>
+                </td>
+              </tr>
       
-    <tr>
-      <th>カナ</th>
-      <td>
-        <%= "#{@customer.last_name_kana} #{@customer.first_name_kana}" %>
-      </td>
-    </tr>
-      
-    <tr>
-      <th>郵便番号</th>
-      <td>
-        <%= @customer.postal_code %>
-      </td>
-    </tr>
-      
-    <tr>
-      <th>住所</th>
-      <td>
-        <%= @customer.address %>
-      </td>
-    </tr>
-      
-    <tr>
-      <th>電話番号</th>
-      <td>
-        <%= @customer.telephone_number %>
-      </td>
-    </tr>
-      
-    <tr>
-      <th>メールアドレス</th>
-      <td>
-        <%= @customer.email %>
-      </td>
-    </tr>
-  </table>
-    
-    <br>
-    
-  <table>
-    <tr>
-      <th>配送先</th>
-      <td>
-        <%= link_to "一覧を見る",  public_addresses_path(@customer), class: "btn btn-primary btn-sm" %>
-      </td>
-    </tr>
-    <br>
-    <tr>
-      <th>注文履歴</th>
-      <td>
-        <%= link_to "一覧を見る",  public_orders_path(@customer), class: "btn btn-primary btn-sm" %>
-      </td>
-    </tr>
-  </table>
+              <tr>
+                <th class="table-light" >フリガナ</th>
+                <td>
+                  <%= "#{@customer.last_name_kana} #{@customer.first_name_kana} "%>
+                </td>
+              </tr>
+                
+              <tr>
+                <th class="table-light">郵便番号</th>
+                <td>
+                  <%= @customer.postal_code %>
+                </td>
+              </tr>
+                
+              <tr>
+                <th class="table-light">住所</th>
+                <td>
+                  <%= @customer.address %>
+                </td>
+              </tr>
+                
+              <tr>
+                <th class="table-light">電話番号</th>
+                <td>
+                  <%= @customer.telephone_number %>
+                </td>
+              </tr>
+                
+              <tr>
+                <th class="table-light">メールアドレス</th>
+                <td>
+                  <%= @customer.email %>
+                </td>
+              </tr>
+            </table>
+            
+            <table>
+              <tr>
+                <th>配送先</th>
+                <td>
+                  <%= link_to "一覧を見る",  public_addresses_path(@customer), class: "btn btn-primary btn-sm mx-5" %>
+                </td>
+              </tr>
+              <tr>
+                <th>注文履歴</th>
+                <td>
+                  <%= link_to "一覧を見る",  public_orders_path(@customer), class: "btn btn-primary btn-sm mx-5" %>
+                </td>
+              </tr>
+            </table>
+    </div>        
+  </div>
   
